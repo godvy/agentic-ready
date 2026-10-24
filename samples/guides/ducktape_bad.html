@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ducktape CLI — Install &amp; configure</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; color: #222; line-height: 1.6; padding: 0 16px; }
+  code, pre { background: #f4f4f4; border-radius: 4px; } pre { padding: 12px; }
+  .tip { cursor: help; color: #0a66c2; position: relative; }
+  .tip:hover::after { content: attr(data-tip); position: absolute; left: 20px; top: -4px; width: 300px; background: #222; color: #fff; padding: 8px; border-radius: 6px; font-size: 13px; }
+  .tabs button { border: 1px solid #ccc; background: #fafafa; padding: 4px 12px; cursor: pointer; }
+  .tabs button.on { background: #222; color: #fff; }
+  .callout { background: #fff6d6; border-left: 4px solid #e0b000; padding: 8px 12px; }
+</style>
+</head>
+<body>
+<main>
+<h1>Install &amp; configure Ducktape CLI</h1>
+<p>Ducktape lets you sync, patch and ship config across environments from your terminal.</p>
+<div class="callout" id="prereq">Loading requirements…</div>
+
+<h2>1. Install</h2>
+<div class="tabs">
+  <button class="on" data-os="linux">Linux</button><button data-os="mac">macOS</button><button data-os="win">Windows</button>
+</div>
+<div data-panel="linux"><pre><code>curl -fsSL https://get.ducktape.dev | sh</code></pre></div>
+<div data-panel="mac" hidden><pre><code>brew install ducktape/tap/ducktape</code></pre></div>
+<div data-panel="win" hidden><pre><code>winget install Ducktape.CLI</code></pre></div>
+
+<h2>2. Authenticate</h2>
+<p>Create a token in the dashboard and make it available to the CLI
+  <span class="tip" data-tip="Set it as the DUCKTAPE_TOKEN environment variable. Since v3 the CLI ignores tokens saved in ~/.ducktaperc.">&#9432;</span>.</p>
+
+<h2>3. Connect to your workspace</h2>
+<p>Run the command below with your workspace name:</p>
+<img alt="terminal screenshot" width="520" src="data:image/png;base64,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">
+
+<h2>4. Verify</h2>
+<p>Run <code>ducktape doctor</code>. All checks should be green.</p>
+</main>
+<script>
+  document.getElementById("prereq").textContent =
+    "Requires Node.js 20 or newer. Older versions fail with ERR_UNSUPPORTED_ENGINE.";
+  document.querySelectorAll(".tabs button").forEach(b => b.onclick = () => {
+    document.querySelectorAll(".tabs button").forEach(x => x.classList.toggle("on", x === b));
+    document.querySelectorAll("[data-panel]").forEach(p => p.hidden = p.dataset.panel !== b.dataset.os);
+  });
+</script>
+</body>
+</html>

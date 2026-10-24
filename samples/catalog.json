@@ -1,0 +1,35 @@
+{
+  "ducktape": {
+    "title": "Ducktape CLI: install & configure",
+    "domain": "Developer tooling",
+    "bad": "samples/guides/ducktape_bad.html",
+    "good": "samples/guides/ducktape_good.html",
+    "reference": "The terminal screenshot in step 3 shows: ducktape login --workspace <name> --region eu-west. The prerequisite callout is filled by JavaScript and reads: Requires Node.js 20 or newer.",
+    "tasks": {
+      "instruct": "How do I install Ducktape on Windows and connect it to my workspace in the EU?",
+      "execute": "Write a PowerShell script that installs Ducktape on Windows, authenticates it, connects to the workspace 'acme' in the EU region, and verifies the setup."
+    }
+  },
+  "pondhost": {
+    "title": "Pondhost: deploy a static site",
+    "domain": "Hosting / DevOps",
+    "bad": "samples/guides/pondhost_bad.html",
+    "good": "samples/guides/pondhost_good.html",
+    "reference": "The pond.toml image shows: [site] name = \"my-site\", publish_dir = \"dist\"; [build] command = \"npm run build\". The custom-domain steps (pond domains add <domain>, CNAME to edge.pondhost.net, `pond status` to verify) live on a separate Domains page.",
+    "tasks": {
+      "instruct": "How do I deploy my Vite app to Pondhost and serve it on docs.example.com?",
+      "execute": "Produce the pond.toml file and the exact shell commands to deploy a Vite app to Pondhost for the first time, attach the domain docs.example.com, and verify it is live."
+    }
+  },
+  "waddle": {
+    "title": "Waddle: set up SAML SSO",
+    "domain": "SaaS admin / IT",
+    "bad": "samples/guides/waddle_bad.html",
+    "good": "samples/guides/waddle_good.html",
+    "reference": "The SAML settings image shows: ACS URL https://auth.waddle.app/saml/acs, Entity ID urn:waddle:sp, NameID format EmailAddress.",
+    "tasks": {
+      "instruct": "How do I set up SAML SSO for our Waddle workspace with Okta without locking anyone out?",
+      "execute": "Produce the exact Okta SAML app settings (URLs, IDs, attribute mappings) and the ordered list of Waddle admin actions to enforce SSO safely."
+    }
+  }
+}

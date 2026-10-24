@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Waddle — Set up SAML SSO</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; color: #222; line-height: 1.6; padding: 0 16px; }
+  code { background: #f4f4f4; border-radius: 4px; }
+  table { border-collapse: collapse; } td, th { border: 1px solid #ddd; padding: 6px 10px; }
+</style>
+</head>
+<body>
+<main>
+<h1>Set up SAML single sign-on</h1>
+<p>Available on the Business plan. You need Owner access in Waddle and admin access in your identity provider (Okta, Entra ID, Google).</p>
+
+<h2>1. Create a SAML app in your identity provider</h2>
+<table>
+  <tr><th>Setting</th><th>Value</th></tr>
+  <tr><td>ACS (reply) URL</td><td><code>https://auth.waddle.app/saml/acs</code></td></tr>
+  <tr><td>Entity ID (audience)</td><td><code>urn:waddle:sp</code></td></tr>
+  <tr><td>NameID format</td><td>EmailAddress</td></tr>
+</table>
+
+<h2>2. Map attributes</h2>
+<ul>
+  <li>NameID: the user's email</li>
+  <li><code>groups</code>: the user's group names. Required: without it, everyone joins as a Guest.</li>
+</ul>
+
+<h2>3. Connect Waddle</h2>
+<p>In Waddle go to <b>Settings → Security → SSO</b>, paste your IdP metadata URL and click <b>Save</b>.</p>
+
+<h2>4. Enforce SSO safely</h2>
+<ol>
+  <li>Turn on <b>Allow password fallback for Owners</b> first. Otherwise a broken IdP config locks every admin out.</li>
+  <li>Click <b>Test SSO</b> and sign in from a private window.</li>
+  <li>Only after the test succeeds, toggle <b>Require SSO</b>.</li>
+</ol>
+</main>
+</body>
+</html>

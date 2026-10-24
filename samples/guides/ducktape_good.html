@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ducktape CLI — Install &amp; configure</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; color: #222; line-height: 1.6; padding: 0 16px; }
+  code, pre { background: #f4f4f4; border-radius: 4px; } pre { padding: 12px; }
+</style>
+</head>
+<body>
+<main>
+<h1>Install &amp; configure Ducktape CLI</h1>
+<p>Ducktape lets you sync, patch and ship config across environments from your terminal.</p>
+
+<h2>Prerequisites</h2>
+<p>Node.js 20 or newer. Older versions fail with <code>ERR_UNSUPPORTED_ENGINE</code>.</p>
+
+<h2>1. Install</h2>
+<ul>
+  <li>Linux: <code>curl -fsSL https://get.ducktape.dev | sh</code></li>
+  <li>macOS: <code>brew install ducktape/tap/ducktape</code></li>
+  <li>Windows: <code>winget install Ducktape.CLI</code></li>
+</ul>
+
+<h2>2. Authenticate</h2>
+<p>Create a token in the dashboard and set it as the <code>DUCKTAPE_TOKEN</code> environment variable.
+   Since v3 the CLI ignores tokens saved in <code>~/.ducktaperc</code>.</p>
+<pre><code># Linux/macOS
+export DUCKTAPE_TOKEN=your-token
+# Windows PowerShell
+$env:DUCKTAPE_TOKEN = "your-token"</code></pre>
+
+<h2>3. Connect to your workspace</h2>
+<pre><code>ducktape login --workspace &lt;name&gt; --region eu-west</code></pre>
+<p>Regions: <code>eu-west</code>, <code>us-east</code>. Use the region shown in your dashboard.</p>
+
+<h2>4. Verify</h2>
+<p>Run <code>ducktape doctor</code>. All checks should be green. If the token check fails, confirm <code>DUCKTAPE_TOKEN</code> is set in the current shell.</p>
+</main>
+</body>
+</html>

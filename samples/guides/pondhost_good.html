@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pondhost — Deploy a static site</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; color: #222; line-height: 1.6; padding: 0 16px; }
+  code, pre { background: #f4f4f4; border-radius: 4px; } pre { padding: 12px; }
+</style>
+</head>
+<body>
+<main>
+<h1>Deploy a static site to Pondhost</h1>
+<p>Pondhost serves static sites from a global edge network. Works with Vite, Next.js static export, Hugo and more.</p>
+
+<h2>1. Install the CLI</h2>
+<pre><code>npm install -g pondhost</code></pre>
+
+<h2>2. Configure your project</h2>
+<p>Add a <code>pond.toml</code> at your project root. Pondhost serves <code>./public</code> by default;
+   set <code>publish_dir</code> if your build outputs elsewhere (Vite uses <code>dist</code>).</p>
+<pre><code>[site]
+name = "my-site"
+publish_dir = "dist"
+
+[build]
+command = "npm run build"</code></pre>
+
+<h2>3. Link, then deploy</h2>
+<p>Run <code>pond link</code> once before your first deploy, otherwise the deploy creates a duplicate project.</p>
+<pre><code>pond link
+pond deploy --prod</code></pre>
+
+<h2>4. Add a custom domain</h2>
+<pre><code>pond domains add docs.example.com</code></pre>
+<p>Then create a <code>CNAME</code> record pointing your domain to <code>edge.pondhost.net</code>.
+   HTTPS is issued automatically within ~5 minutes.</p>
+
+<h2>5. Verify</h2>
+<p>Run <code>pond status</code>; the domain should show <code>active</code> and <code>tls: issued</code>.</p>
+</main>
+</body>
+</html>

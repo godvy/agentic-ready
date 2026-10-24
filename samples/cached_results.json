@@ -1,0 +1,929 @@
+{
+ "ducktape:bad:instruct": {
+  "source": "samples/guides/ducktape_bad.html",
+  "task": "How do I install Ducktape on Windows and connect it to my workspace in the EU?",
+  "mode": "instruct",
+  "profiles": {
+   "raw_html": {
+    "available": true,
+    "label": "Raw HTML agent",
+    "note": "9,732 chars of HTML",
+    "view": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Ducktape CLI \u2014 Install &amp; configure</title>\n<style>\n  body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; color: #222; line-height: 1.6; padding: 0 16px; }\n  code, pre { background: #f4f4f4; border-radius: 4px; } pre { padding: 12px; }\n  .tip { cursor: help; color: #0a66c2; position: relative; }\n  .tip:hover::after { content: attr(data-tip); position: absolute; left: 20px; top: -4px; width: 300px; background: #222; color: #fff; padding: 8px; border-radius: 6px; font-size: 13px; }\n  .tabs button { border: 1px solid #ccc; background: #fafafa; padding: 4px 12px; cursor: pointer; }\n  .tabs button.on { background: #222; color: #fff; }\n  .callout { background: #fff6d6; border-left: 4px solid #e0b000; padding: 8px 12px; }\n</style>\n</head>\n<body>\n<main>\n<h1>Install &amp; configure Ducktape CLI</h1>\n<p>Ducktape lets you sync, patch and ship config across environments from your terminal.</p>\n<div class=\"callout\" id=\"prereq\">Loading requirements\u2026</div>\n\n<h2>1. Install</h2>\n<div class=\"tabs\">\n  <button class=\"on\" data-os=\"linux\">Linux</button><button data-os=\"mac\">macOS</button><button data-os=\"win\">Windows</button>\n</div>\n<div data-panel=\"linux\"><pre><code>curl -fsSL https://get.ducktape.dev | sh</code></pre></div>\n<div data-panel=\"mac\" hidden><pre><code>brew install ducktape/tap/ducktape</code></pre></div>\n<div data-panel=\"win\" hidden><pre><code>winget install Ducktape.CLI</code></pre></div>\n\n<h2>2. Authenticate</h2>\n<p>Create a token in the dashboard and make it available to the CLI\n  <span class=\"tip\" data-tip=\"Set it as the DUCKTAPE_TOKEN environment variable. Since v3 the CLI ignores tokens saved in ~/.ducktaperc.\">&#9432;</span>.</p>\n\n<h2>3. Connect to your workspace</h2>\n<p>Run the command below with your workspace name:</p>\n<img alt=\"terminal screenshot\" width=\"520\" src=\"data:image/png;base64,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\">\n\n<h2>4. Verify</h2>\n<p>Run <code>ducktape doctor</code>. All checks should be green.</p>\n</main>\n<script>\n  document.getElementById(\"prereq\").textContent =\n    \"Requires Node.js 20 or newer. Older versions fail with ERR_UNSUPPORTED_ENGINE.\";\n  document.querySelectorAll(\".tabs button\").forEach(b => b.onclick = () => {\n    document.querySelectorAll(\".tabs button\").forEach(x => x.classList.toggle(\"on\", x === b));\n    document.querySelectorAll(\"[data-panel]\").forEach(p => p.hidden = p.dataset.panel !== b.dataset.os);\n  });\n</script>\n</body>\n</html>\n",
+    "output": "To install Ducktape on Windows and connect it to your workspace in the EU, follow these steps:\n\n### Prerequisites\n- Make sure you have Node.js 20 or newer installed on your Windows machine. Older versions will not work.\n\n### Step 1: Install Ducktape CLI on Windows\n1. Open a Command Prompt or PowerShell window.\n2. Run the following command to install Ducktape CLI:\n   ```\n   winget install Ducktape.CLI\n   ```\n\n### Step 2: Authenticate\n1. Go to the Ducktape dashboard (web interface) and create an authentication token.\n2. Set this token as an environment variable in your Windows system:\n   - Open the Start menu and search for \"Environment Variables\".\n   - Select \"Edit the system environment variables\".\n   - Click \"Environment Variables\".\n   - Under \"User variables\" or \"System variables\", click \"New\".\n   - Enter `DUCKTAPE_TOKEN` as the variable name.\n   - Paste your token as the variable value.\n   - Click OK to save.\n\n### Step 3: Connect to your workspace\n1. In the Command Prompt or PowerShell, run the command below, replacing `<workspace-name>` with your actual workspace name in the EU:\n   ```\n   ducktape connect <workspace-name>\n   ```\n   ASSUMPTION: The workspace name for the EU region should be the exact name you have for your EU workspace.\n\n### Step 4: Verify installation and connection\n1. Run the following command to check that everything is set up correctly:\n   ```\n   ducktape doctor\n   ```\n2. Confirm that all checks are green, indicating a successful installation and connection.\n\nYou have now installed Ducktape on Windows and connected it to your EU workspace.",
+    "report": {
+     "categories": {
+      "correctness": 15,
+      "completeness": 20,
+      "ordering": 15,
+      "specificity": 10,
+      "verification": 15
+     },
+     "verdict": "Following this output would fail to connect to your workspace, because the agent gives the wrong command for connecting to an EU workspace; otherwise, the steps are mostly correct.",
+     "failures": [
+      {
+       "severity": "critical",
+       "what_broke": "The agent instructs to run 'ducktape connect <workspace-name>' to connect to the workspace, but the correct command is 'ducktape login --workspace <name> --region eu-west'.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "AUTHOR NOTES: The terminal screenshot in step 3 shows: ducktape login --workspace <name> --region eu-west.",
+       "fix": "To connect to your workspace in the EU, run: ducktape login --workspace <workspace-name> --region eu-west"
+      },
+      {
+       "severity": "major",
+       "what_broke": "The agent does not mention that since v3, the CLI ignores tokens saved in ~/.ducktaperc and only uses the DUCKTAPE_TOKEN environment variable.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "Set it as the DUCKTAPE_TOKEN environment variable. Since v3 the CLI ignores tokens saved in ~/.ducktaperc.",
+       "fix": "Note: Since v3, Ducktape CLI only uses the DUCKTAPE_TOKEN environment variable and ignores tokens saved in ~/.ducktaperc."
+      },
+      {
+       "severity": "minor",
+       "what_broke": "The agent does not specify that the region flag must be '--region eu-west' for EU workspaces.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "ducktape login --workspace <name> --region eu-west",
+       "fix": "Be sure to include '--region eu-west' when connecting to an EU workspace."
+      }
+     ],
+     "score": 75
+    }
+   },
+   "reader": {
+    "available": true,
+    "label": "Reader-mode agent",
+    "note": "Reader-mode Markdown",
+    "view": "# Install & configure Ducktape CLI\n\nDucktape lets you sync, patch and ship config across environments from your terminal.\n\nLoading requirements\u2026\n\n## 1. Install\n\nLinuxmacOSWindows\n\n```\ncurl -fsSL https://get.ducktape.dev | sh\n```\n\n## 2. Authenticate\n\nCreate a token in the dashboard and make it available to the CLI\n\u24d8.\n\n## 3. Connect to your workspace\n\nRun the command below with your workspace name:\n\n[image: terminal screenshot]\n\n## 4. Verify\n\nRun `ducktape doctor`. All checks should be green.",
+    "output": "To install Ducktape on Windows and connect it to your workspace in the EU, follow these steps:\n\n1. **Install Ducktape CLI:**\n   - Open PowerShell or Command Prompt.\n   - Run the following command to install Ducktape:\n     ```\n     curl -fsSL https://get.ducktape.dev | sh\n     ```\n   - This will download and install the Ducktape CLI on your Windows machine.\n\n2. **Authenticate:**\n   - Go to the Ducktape dashboard in your web browser.\n   - Create an authentication token.\n   - Make this token available to the CLI (ASSUMPTION: this usually means setting an environment variable or logging in via the CLI using the token, but the exact method is not specified).\n\n3. **Connect to your workspace:**\n   - Run the Ducktape CLI command to connect to your workspace.\n   - Use your workspace name, which should be the one in the EU region.\n   - The exact command is not provided in the documentation snippet, but it says \"Run the command below with your workspace name\" (ASSUMPTION: likely something like `ducktape connect <workspace-name>`).\n\n4. **Verify the setup:**\n   - Run the command:\n     ```\n     ducktape doctor\n     ```\n   - Ensure all checks are green, confirming the CLI is properly installed and connected.\n\nFollowing these steps will install Ducktape on Windows and connect it to your EU workspace.",
+    "report": {
+     "categories": {
+      "correctness": 8,
+      "completeness": 10,
+      "ordering": 15,
+      "specificity": 5,
+      "verification": 15
+     },
+     "verdict": "Following this output would fail: the install command for Windows is wrong, the workspace connection command is missing and vague, and the authentication step is incomplete.",
+     "failures": [
+      {
+       "severity": "critical",
+       "what_broke": "Incorrect install command for Windows; used Linux install command instead of the correct Windows command.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "<div data-panel=\"win\" hidden=\"\"><pre><code>winget install Ducktape.CLI</code></pre></div>",
+       "fix": "To install Ducktape on Windows, run: winget install Ducktape.CLI"
+      },
+      {
+       "severity": "critical",
+       "what_broke": "Did not provide the exact command to connect to the workspace in the EU; left it as an assumption.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "The terminal screenshot in step 3 shows: ducktape login --workspace <name> --region eu-west.",
+       "fix": "To connect to your workspace in the EU, run: ducktape login --workspace <your-workspace-name> --region eu-west"
+      },
+      {
+       "severity": "major",
+       "what_broke": "Authentication step is vague and does not specify that the token must be set as the DUCKTAPE_TOKEN environment variable.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "Set it as the DUCKTAPE_TOKEN environment variable. Since v3 the CLI ignores tokens saved in ~/.ducktaperc.",
+       "fix": "Set your authentication token as the DUCKTAPE_TOKEN environment variable before running Ducktape commands."
+      }
+     ],
+     "score": 53
+    }
+   },
+   "llms_txt": {
+    "available": false,
+    "label": "llms.txt agent",
+    "note": "Not checked (local or pasted content)."
+   }
+  },
+  "score": 64
+ },
+ "ducktape:bad:execute": {
+  "source": "samples/guides/ducktape_bad.html",
+  "task": "Write a PowerShell script that installs Ducktape on Windows, authenticates it, connects to the workspace 'acme' in the EU region, and verifies the setup.",
+  "mode": "execute",
+  "profiles": {
+   "raw_html": {
+    "available": true,
+    "label": "Raw HTML agent",
+    "note": "9,732 chars of HTML",
+    "view": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Ducktape CLI \u2014 Install &amp; configure</title>\n<style>\n  body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; color: #222; line-height: 1.6; padding: 0 16px; }\n  code, pre { background: #f4f4f4; border-radius: 4px; } pre { padding: 12px; }\n  .tip { cursor: help; color: #0a66c2; position: relative; }\n  .tip:hover::after { content: attr(data-tip); position: absolute; left: 20px; top: -4px; width: 300px; background: #222; color: #fff; padding: 8px; border-radius: 6px; font-size: 13px; }\n  .tabs button { border: 1px solid #ccc; background: #fafafa; padding: 4px 12px; cursor: pointer; }\n  .tabs button.on { background: #222; color: #fff; }\n  .callout { background: #fff6d6; border-left: 4px solid #e0b000; padding: 8px 12px; }\n</style>\n</head>\n<body>\n<main>\n<h1>Install &amp; configure Ducktape CLI</h1>\n<p>Ducktape lets you sync, patch and ship config across environments from your terminal.</p>\n<div class=\"callout\" id=\"prereq\">Loading requirements\u2026</div>\n\n<h2>1. Install</h2>\n<div class=\"tabs\">\n  <button class=\"on\" data-os=\"linux\">Linux</button><button data-os=\"mac\">macOS</button><button data-os=\"win\">Windows</button>\n</div>\n<div data-panel=\"linux\"><pre><code>curl -fsSL https://get.ducktape.dev | sh</code></pre></div>\n<div data-panel=\"mac\" hidden><pre><code>brew install ducktape/tap/ducktape</code></pre></div>\n<div data-panel=\"win\" hidden><pre><code>winget install Ducktape.CLI</code></pre></div>\n\n<h2>2. Authenticate</h2>\n<p>Create a token in the dashboard and make it available to the CLI\n  <span class=\"tip\" data-tip=\"Set it as the DUCKTAPE_TOKEN environment variable. Since v3 the CLI ignores tokens saved in ~/.ducktaperc.\">&#9432;</span>.</p>\n\n<h2>3. Connect to your workspace</h2>\n<p>Run the command below with your workspace name:</p>\n<img alt=\"terminal screenshot\" width=\"520\" src=\"data:image/png;base64,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\">\n\n<h2>4. Verify</h2>\n<p>Run <code>ducktape doctor</code>. All checks should be green.</p>\n</main>\n<script>\n  document.getElementById(\"prereq\").textContent =\n    \"Requires Node.js 20 or newer. Older versions fail with ERR_UNSUPPORTED_ENGINE.\";\n  document.querySelectorAll(\".tabs button\").forEach(b => b.onclick = () => {\n    document.querySelectorAll(\".tabs button\").forEach(x => x.classList.toggle(\"on\", x === b));\n    document.querySelectorAll(\"[data-panel]\").forEach(p => p.hidden = p.dataset.panel !== b.dataset.os);\n  });\n</script>\n</body>\n</html>\n",
+    "output": "```powershell\n# Step 1: Install Ducktape CLI on Windows using winget\nwinget install Ducktape.CLI\n\n# Step 2: Authenticate\n# Create a token in the dashboard manually (ASSUMPTION: user has created a token)\n# Set the DUCKTAPE_TOKEN environment variable for the current session\n# ASSUMPTION: The user will replace 'YOUR_DUCKTAPE_TOKEN_HERE' with their actual token\n$env:DUCKTAPE_TOKEN = \"YOUR_DUCKTAPE_TOKEN_HERE\"\n\n# Step 3: Connect to your workspace 'acme' in the EU region\n# The documentation only mentions running the command with the workspace name.\n# ASSUMPTION: The region is set via workspace name or environment variable if needed.\n# Since no explicit region flag is documented, we just run the connect command with workspace name.\nducktape connect acme\n\n# Step 4: Verify the setup\nducktape doctor\n```\n\n# Checks to confirm success:\n# 1. Check that winget installed Ducktape CLI without errors.\n# 2. Check that the DUCKTAPE_TOKEN environment variable is set in the session.\n# 3. Check that 'ducktape connect acme' runs without error.\n# 4. Check that 'ducktape doctor' outputs all green checks (no errors).\n\n# To run this script:\n# - Replace YOUR_DUCKTAPE_TOKEN_HERE with your actual Ducktape token.\n# - Run the script in a PowerShell terminal with administrator privileges (for winget install).\n```",
+    "report": {
+     "categories": {
+      "correctness": 15,
+      "completeness": 18,
+      "ordering": 15,
+      "specificity": 10,
+      "verification": 10
+     },
+     "verdict": "Following this output would not fully succeed: the workspace connection command is incorrect and omits the required region flag, so the setup would not complete as intended.",
+     "failures": [
+      {
+       "severity": "critical",
+       "what_broke": "The script uses 'ducktape connect acme' instead of the required 'ducktape login --workspace acme --region eu-west' command.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "The terminal screenshot in step 3 shows: ducktape login --workspace <name> --region eu-west.",
+       "fix": "In step 3, run: ducktape login --workspace acme --region eu-west"
+      },
+      {
+       "severity": "major",
+       "what_broke": "The script uses 'ducktape connect', which is not documented as a valid command; the correct command is 'ducktape login' with workspace and region flags.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "The terminal screenshot in step 3 shows: ducktape login --workspace <name> --region eu-west.",
+       "fix": "Replace 'ducktape connect acme' with 'ducktape login --workspace acme --region eu-west'"
+      },
+      {
+       "severity": "minor",
+       "what_broke": "The script does not mention the prerequisite of Node.js 20 or newer, which is required for Ducktape CLI to function.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "Requires Node.js 20 or newer. Older versions fail with ERR_UNSUPPORTED_ENGINE.",
+       "fix": "Before installing Ducktape CLI, ensure Node.js 20 or newer is installed."
+      }
+     ],
+     "score": 68
+    }
+   },
+   "reader": {
+    "available": true,
+    "label": "Reader-mode agent",
+    "note": "Reader-mode Markdown",
+    "view": "# Install & configure Ducktape CLI\n\nDucktape lets you sync, patch and ship config across environments from your terminal.\n\nLoading requirements\u2026\n\n## 1. Install\n\nLinuxmacOSWindows\n\n```\ncurl -fsSL https://get.ducktape.dev | sh\n```\n\n## 2. Authenticate\n\nCreate a token in the dashboard and make it available to the CLI\n\u24d8.\n\n## 3. Connect to your workspace\n\nRun the command below with your workspace name:\n\n[image: terminal screenshot]\n\n## 4. Verify\n\nRun `ducktape doctor`. All checks should be green.",
+    "output": "I will create a PowerShell script that:\n1. Downloads and runs the Ducktape installer script for Windows.\n2. Prompts the user to enter their authentication token (since the docs say \"Create a token in the dashboard and make it available to the CLI\" but do not specify how to pass it, I will assume setting an environment variable DUCKTAPE_TOKEN is the way).\n3. Runs the command to connect to the workspace 'acme' in the EU region (the docs say \"Run the command below with your workspace name\" but do not show the exact command; I will assume the command is `ducktape connect acme --region eu` based on typical CLI patterns).\n4. Runs `ducktape doctor` to verify the setup.\n\nI will add comments in the script for clarity.\n\n---\n\nCreate file: install_ducktape.ps1\n\nContents:\n\n```powershell\n# Step 1: Install Ducktape CLI on Windows\nWrite-Host \"Installing Ducktape CLI...\"\nInvoke-Expression (Invoke-WebRequest -UseBasicParsing https://get.ducktape.dev | Select-Object -ExpandProperty Content)\n\n# Step 2: Authenticate\n# Prompt user to enter their Ducktape token\n$token = Read-Host -Prompt \"Enter your Ducktape authentication token\"\n# Set environment variable for current session\n$env:DUCKTAPE_TOKEN = $token\n\n# Step 3: Connect to workspace 'acme' in EU region\nWrite-Host \"Connecting to workspace 'acme' in EU region...\"\nducktape connect acme --region eu\n\n# Step 4: Verify setup\nWrite-Host \"Verifying Ducktape setup...\"\nducktape doctor\n```\n\n---\n\nChecks:\n- Confirm Ducktape CLI installed by running `ducktape --version`\n- Confirm connection command runs without error\n- Confirm `ducktape doctor` outputs all green checks\n\n---\n\nOutput the above file content exactly.",
+    "report": {
+     "categories": {
+      "correctness": 7,
+      "completeness": 10,
+      "ordering": 15,
+      "specificity": 10,
+      "verification": 10
+     },
+     "verdict": "Following this output would fail: the install and workspace connect commands are incorrect for Windows, and the region flag is wrong.",
+     "failures": [
+      {
+       "severity": "critical",
+       "what_broke": "Used a curl-based install command for Windows instead of the documented winget command.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "<div data-panel=\"win\" hidden=\"\"><pre><code>winget install Ducktape.CLI</code></pre></div>",
+       "fix": "To install Ducktape CLI on Windows, run: winget install Ducktape.CLI"
+      },
+      {
+       "severity": "critical",
+       "what_broke": "Used 'ducktape connect acme --region eu' instead of the correct login command and region value.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "AUTHOR NOTES: The terminal screenshot in step 3 shows: ducktape login --workspace <name> --region eu-west.",
+       "fix": "To connect to your workspace, run: ducktape login --workspace acme --region eu-west"
+      },
+      {
+       "severity": "major",
+       "what_broke": "Did not mention the Node.js 20+ prerequisite, which is required for Ducktape to work.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "Requires Node.js 20 or newer. Older versions fail with ERR_UNSUPPORTED_ENGINE.",
+       "fix": "Ducktape CLI requires Node.js 20 or newer. Please ensure Node.js is installed and up to date before proceeding."
+      }
+     ],
+     "score": 52
+    }
+   },
+   "llms_txt": {
+    "available": false,
+    "label": "llms.txt agent",
+    "note": "Not checked (local or pasted content)."
+   }
+  },
+  "score": 60
+ },
+ "ducktape:good:instruct": {
+  "source": "samples/guides/ducktape_good.html",
+  "task": "How do I install Ducktape on Windows and connect it to my workspace in the EU?",
+  "mode": "instruct",
+  "profiles": {
+   "raw_html": {
+    "available": true,
+    "label": "Raw HTML agent",
+    "note": "1,608 chars of HTML",
+    "view": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Ducktape CLI \u2014 Install &amp; configure</title>\n<style>\n  body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; color: #222; line-height: 1.6; padding: 0 16px; }\n  code, pre { background: #f4f4f4; border-radius: 4px; } pre { padding: 12px; }\n</style>\n</head>\n<body>\n<main>\n<h1>Install &amp; configure Ducktape CLI</h1>\n<p>Ducktape lets you sync, patch and ship config across environments from your terminal.</p>\n\n<h2>Prerequisites</h2>\n<p>Node.js 20 or newer. Older versions fail with <code>ERR_UNSUPPORTED_ENGINE</code>.</p>\n\n<h2>1. Install</h2>\n<ul>\n  <li>Linux: <code>curl -fsSL https://get.ducktape.dev | sh</code></li>\n  <li>macOS: <code>brew install ducktape/tap/ducktape</code></li>\n  <li>Windows: <code>winget install Ducktape.CLI</code></li>\n</ul>\n\n<h2>2. Authenticate</h2>\n<p>Create a token in the dashboard and set it as the <code>DUCKTAPE_TOKEN</code> environment variable.\n   Since v3 the CLI ignores tokens saved in <code>~/.ducktaperc</code>.</p>\n<pre><code># Linux/macOS\nexport DUCKTAPE_TOKEN=your-token\n# Windows PowerShell\n$env:DUCKTAPE_TOKEN = \"your-token\"</code></pre>\n\n<h2>3. Connect to your workspace</h2>\n<pre><code>ducktape login --workspace &lt;name&gt; --region eu-west</code></pre>\n<p>Regions: <code>eu-west</code>, <code>us-east</code>. Use the region shown in your dashboard.</p>\n\n<h2>4. Verify</h2>\n<p>Run <code>ducktape doctor</code>. All checks should be green. If the token check fails, confirm <code>DUCKTAPE_TOKEN</code> is set in the current shell.</p>\n</main>\n</body>\n</html>\n",
+    "output": "To install Ducktape on Windows and connect it to your workspace in the EU, follow these steps:\n\n1. **Prerequisite**: Make sure you have Node.js version 20 or newer installed on your Windows machine.\n\n2. **Install Ducktape CLI**:\n   - Open a Windows PowerShell window.\n   - Run the command:\n     ```\n     winget install Ducktape.CLI\n     ```\n\n3. **Authenticate**:\n   - Go to the Ducktape dashboard and create an authentication token.\n   - In the same PowerShell window, set the token as an environment variable by running:\n     ```\n     $env:DUCKTAPE_TOKEN = \"your-token\"\n     ```\n     Replace `\"your-token\"` with the actual token you created.\n\n4. **Connect to your workspace**:\n   - Run the command:\n     ```\n     ducktape login --workspace <name> --region eu-west\n     ```\n     Replace `<name>` with your workspace name.\n   - Note: Use the region `eu-west` for the EU region.\n\n5. **Verify the setup**:\n   - Run:\n     ```\n     ducktape doctor\n     ```\n   - Confirm that all checks are green.\n   - If the token check fails, ensure the `DUCKTAPE_TOKEN` environment variable is set in the current PowerShell session.\n\nFollowing these steps will install Ducktape on Windows and connect it to your EU workspace.",
+    "report": {
+     "categories": {
+      "correctness": 25,
+      "completeness": 25,
+      "ordering": 15,
+      "specificity": 20,
+      "verification": 15
+     },
+     "verdict": "Yes, following this output would succeed: all steps, commands, and details match the documentation exactly.",
+     "failures": [],
+     "score": 100
+    }
+   },
+   "reader": {
+    "available": true,
+    "label": "Reader-mode agent",
+    "note": "Reader-mode Markdown",
+    "view": "# Install & configure Ducktape CLI\n\nDucktape lets you sync, patch and ship config across environments from your terminal.\n\n## Prerequisites\n\nNode.js 20 or newer. Older versions fail with `ERR_UNSUPPORTED_ENGINE`.\n\n## 1. Install\n\n* Linux: `curl -fsSL https://get.ducktape.dev | sh`\n* macOS: `brew install ducktape/tap/ducktape`\n* Windows: `winget install Ducktape.CLI`\n\n## 2. Authenticate\n\nCreate a token in the dashboard and set it as the `DUCKTAPE_TOKEN` environment variable.\nSince v3 the CLI ignores tokens saved in `~/.ducktaperc`.\n\n```\n# Linux/macOS\nexport DUCKTAPE_TOKEN=your-token\n# Windows PowerShell\n$env:DUCKTAPE_TOKEN = \"your-token\"\n```\n\n## 3. Connect to your workspace\n\n```\nducktape login --workspace <name> --region eu-west\n```\n\nRegions: `eu-west`, `us-east`. Use the region shown in your dashboard.\n\n## 4. Verify\n\nRun `ducktape doctor`. All checks should be green. If the token check fails, confirm `DUCKTAPE_TOKEN` is set in the current shell.",
+    "output": "To install Ducktape on Windows and connect it to your workspace in the EU, follow these steps:\n\n1. **Prerequisite**: Ensure you have Node.js version 20 or newer installed on your Windows machine.\n\n2. **Install Ducktape CLI**:\n   - Open a PowerShell window.\n   - Run the command:\n     ```\n     winget install Ducktape.CLI\n     ```\n\n3. **Authenticate**:\n   - Go to the Ducktape dashboard and create an authentication token.\n   - In the same PowerShell window, set the token as an environment variable by running:\n     ```\n     $env:DUCKTAPE_TOKEN = \"your-token\"\n     ```\n     Replace `\"your-token\"` with the actual token you created.\n\n4. **Connect to your workspace**:\n   - Run the command:\n     ```\n     ducktape login --workspace <name> --region eu-west\n     ```\n     Replace `<name>` with your workspace name.\n     Use `eu-west` as the region since you want to connect to the EU.\n\n5. **Verify the setup**:\n   - Run:\n     ```\n     ducktape doctor\n     ```\n   - Confirm that all checks are green.\n   - If the token check fails, make sure the `DUCKTAPE_TOKEN` environment variable is set in the current PowerShell session.\n\nFollowing these steps will install Ducktape on Windows and connect it to your EU workspace.",
+    "report": {
+     "categories": {
+      "correctness": 25,
+      "completeness": 25,
+      "ordering": 15,
+      "specificity": 20,
+      "verification": 15
+     },
+     "verdict": "Following this output would succeed: all commands, values, and steps match the documentation exactly.",
+     "failures": [],
+     "score": 100
+    }
+   },
+   "llms_txt": {
+    "available": false,
+    "label": "llms.txt agent",
+    "note": "Not checked (local or pasted content)."
+   }
+  },
+  "score": 100
+ },
+ "ducktape:good:execute": {
+  "source": "samples/guides/ducktape_good.html",
+  "task": "Write a PowerShell script that installs Ducktape on Windows, authenticates it, connects to the workspace 'acme' in the EU region, and verifies the setup.",
+  "mode": "execute",
+  "profiles": {
+   "raw_html": {
+    "available": true,
+    "label": "Raw HTML agent",
+    "note": "1,608 chars of HTML",
+    "view": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Ducktape CLI \u2014 Install &amp; configure</title>\n<style>\n  body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; color: #222; line-height: 1.6; padding: 0 16px; }\n  code, pre { background: #f4f4f4; border-radius: 4px; } pre { padding: 12px; }\n</style>\n</head>\n<body>\n<main>\n<h1>Install &amp; configure Ducktape CLI</h1>\n<p>Ducktape lets you sync, patch and ship config across environments from your terminal.</p>\n\n<h2>Prerequisites</h2>\n<p>Node.js 20 or newer. Older versions fail with <code>ERR_UNSUPPORTED_ENGINE</code>.</p>\n\n<h2>1. Install</h2>\n<ul>\n  <li>Linux: <code>curl -fsSL https://get.ducktape.dev | sh</code></li>\n  <li>macOS: <code>brew install ducktape/tap/ducktape</code></li>\n  <li>Windows: <code>winget install Ducktape.CLI</code></li>\n</ul>\n\n<h2>2. Authenticate</h2>\n<p>Create a token in the dashboard and set it as the <code>DUCKTAPE_TOKEN</code> environment variable.\n   Since v3 the CLI ignores tokens saved in <code>~/.ducktaperc</code>.</p>\n<pre><code># Linux/macOS\nexport DUCKTAPE_TOKEN=your-token\n# Windows PowerShell\n$env:DUCKTAPE_TOKEN = \"your-token\"</code></pre>\n\n<h2>3. Connect to your workspace</h2>\n<pre><code>ducktape login --workspace &lt;name&gt; --region eu-west</code></pre>\n<p>Regions: <code>eu-west</code>, <code>us-east</code>. Use the region shown in your dashboard.</p>\n\n<h2>4. Verify</h2>\n<p>Run <code>ducktape doctor</code>. All checks should be green. If the token check fails, confirm <code>DUCKTAPE_TOKEN</code> is set in the current shell.</p>\n</main>\n</body>\n</html>\n",
+    "output": "```powershell\n# Step 1: Install Ducktape CLI on Windows using winget\nwinget install Ducktape.CLI\n\n# Step 2: Set DUCKTAPE_TOKEN environment variable\n# ASSUMPTION: The user will replace 'your-token' with their actual token before running the script\n$env:DUCKTAPE_TOKEN = \"your-token\"\n\n# Step 3: Connect to workspace 'acme' in the 'eu-west' region\nducktape login --workspace acme --region eu-west\n\n# Step 4: Verify the setup\nducktape doctor\n```\n\n# Checks to confirm success:\n# - The winget install command completes without error.\n# - The DUCKTAPE_TOKEN environment variable is set in the current session.\n# - The ducktape login command completes successfully without error.\n# - The ducktape doctor command outputs all green checks (no errors).\n```",
+    "report": {
+     "categories": {
+      "correctness": 25,
+      "completeness": 23,
+      "ordering": 15,
+      "specificity": 20,
+      "verification": 13
+     },
+     "verdict": "Following this output would succeed, but the script omits prompting or guiding the user to actually obtain and insert their real Ducktape token, which is a necessary manual step.",
+     "failures": [
+      {
+       "severity": "major",
+       "what_broke": "The script uses a placeholder 'your-token' for DUCKTAPE_TOKEN without instructing the user to obtain their real token from the dashboard and replace it.",
+       "root_cause": "agent_error",
+       "doc_evidence": "Create a token in the dashboard and set it as the DUCKTAPE_TOKEN environment variable.",
+       "fix": "Before running this script, create a token in the Ducktape dashboard and replace 'your-token' with your actual token."
+      },
+      {
+       "severity": "minor",
+       "what_broke": "The verification step does not mention what to do if the token check fails, as the docs advise confirming DUCKTAPE_TOKEN is set in the current shell.",
+       "root_cause": "agent_error",
+       "doc_evidence": "If the token check fails, confirm DUCKTAPE_TOKEN is set in the current shell.",
+       "fix": "If 'ducktape doctor' reports a token error, ensure DUCKTAPE_TOKEN is set in your current PowerShell session."
+      }
+     ],
+     "score": 96
+    }
+   },
+   "reader": {
+    "available": true,
+    "label": "Reader-mode agent",
+    "note": "Reader-mode Markdown",
+    "view": "# Install & configure Ducktape CLI\n\nDucktape lets you sync, patch and ship config across environments from your terminal.\n\n## Prerequisites\n\nNode.js 20 or newer. Older versions fail with `ERR_UNSUPPORTED_ENGINE`.\n\n## 1. Install\n\n* Linux: `curl -fsSL https://get.ducktape.dev | sh`\n* macOS: `brew install ducktape/tap/ducktape`\n* Windows: `winget install Ducktape.CLI`\n\n## 2. Authenticate\n\nCreate a token in the dashboard and set it as the `DUCKTAPE_TOKEN` environment variable.\nSince v3 the CLI ignores tokens saved in `~/.ducktaperc`.\n\n```\n# Linux/macOS\nexport DUCKTAPE_TOKEN=your-token\n# Windows PowerShell\n$env:DUCKTAPE_TOKEN = \"your-token\"\n```\n\n## 3. Connect to your workspace\n\n```\nducktape login --workspace <name> --region eu-west\n```\n\nRegions: `eu-west`, `us-east`. Use the region shown in your dashboard.\n\n## 4. Verify\n\nRun `ducktape doctor`. All checks should be green. If the token check fails, confirm `DUCKTAPE_TOKEN` is set in the current shell.",
+    "output": "```powershell\n# 1. Install Ducktape CLI on Windows using winget\nwinget install Ducktape.CLI\n\n# 2. Set DUCKTAPE_TOKEN environment variable for the current session\n# ASSUMPTION: The user will replace 'your-token' with their actual token before running the script\n$env:DUCKTAPE_TOKEN = \"your-token\"\n\n# 3. Connect to workspace 'acme' in the 'eu-west' region\nducktape login --workspace acme --region eu-west\n\n# 4. Verify the setup\nducktape doctor\n```\n\n# Explanation:\n# - The script installs Ducktape CLI using winget.\n# - Sets the DUCKTAPE_TOKEN environment variable in the current PowerShell session.\n# - Logs into the workspace 'acme' in the 'eu-west' region.\n# - Runs `ducktape doctor` to verify the installation and authentication.\n# \n# The user must replace \"your-token\" with their actual Ducktape token before running the script.\n```",
+    "report": {
+     "categories": {
+      "correctness": 25,
+      "completeness": 25,
+      "ordering": 15,
+      "specificity": 20,
+      "verification": 15
+     },
+     "verdict": "Following this output would succeed: the script matches the documentation's install, authentication, workspace connection, and verification steps for Windows/PowerShell.",
+     "failures": [],
+     "score": 100
+    }
+   },
+   "llms_txt": {
+    "available": false,
+    "label": "llms.txt agent",
+    "note": "Not checked (local or pasted content)."
+   }
+  },
+  "score": 98
+ },
+ "pondhost:bad:instruct": {
+  "source": "samples/guides/pondhost_bad.html",
+  "task": "How do I deploy my Vite app to Pondhost and serve it on docs.example.com?",
+  "mode": "instruct",
+  "profiles": {
+   "raw_html": {
+    "available": true,
+    "label": "Raw HTML agent",
+    "note": "10,986 chars of HTML",
+    "view": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Pondhost \u2014 Deploy a static site</title>\n<style>\n  body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; color: #222; line-height: 1.6; padding: 0 16px; }\n  code, pre { background: #f4f4f4; border-radius: 4px; } pre { padding: 12px; }\n  .tip { cursor: help; color: #0a66c2; position: relative; }\n  .tip:hover::after { content: attr(data-tip); position: absolute; left: 20px; top: -4px; width: 300px; background: #222; color: #fff; padding: 8px; border-radius: 6px; font-size: 13px; }\n  .warn::before { content: attr(data-label); display: block; background: #ffe1e1; border-left: 4px solid #d33; padding: 8px 12px; }\n</style>\n</head>\n<body>\n<main>\n<h1>Deploy a static site to Pondhost</h1>\n<p>Pondhost serves static sites from a global edge network. Works with Vite, Next.js static export, Hugo and more.</p>\n\n<h2>Install the CLI</h2>\n<pre><code>npm install -g pondhost</code></pre>\n\n<h2>Configure your project</h2>\n<p>Add a <code>pond.toml</code> at your project root\n  <span class=\"tip\" data-tip=\"Pondhost serves ./public by default. Set publish_dir if your build outputs elsewhere (Vite uses dist).\">&#9432;</span>.\n  Here's a typical config:</p>\n<img alt=\"pond.toml example\" width=\"420\" src=\"data:image/png;base64,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\">\n\n<h2>Deploy</h2>\n<div class=\"warn\" data-label=\"Run `pond link` once before your first deploy, or the deploy creates a duplicate project.\"></div>\n<pre><code>pond deploy --prod</code></pre>\n\n<h2>Custom domains</h2>\n<p>See the <a href=\"/docs/domains\">Domains guide</a>.</p>\n</main>\n</body>\n</html>\n",
+    "output": "To deploy your Vite app to Pondhost and serve it on docs.example.com, follow these steps:\n\n1. **Prerequisites:**\n   - Have your Vite app ready and built.\n   - Have Node.js and npm installed on your machine.\n   - Have a Pondhost account (ASSUMPTION: you need an account to deploy).\n\n2. **Install the Pondhost CLI globally:**\n   Open your terminal and run:\n   ```\n   npm install -g pondhost\n   ```\n\n3. **Configure your Vite project for Pondhost:**\n   - At the root of your Vite project, create a file named `pond.toml`.\n   - Since Vite outputs the build to the `dist` directory by default, specify this in your `pond.toml`:\n     ```toml\n     publish_dir = \"dist\"\n     ```\n   This tells Pondhost to serve the static files from the `dist` folder.\n\n4. **Build your Vite app:**\n   Run the Vite build command (usually):\n   ```\n   npm run build\n   ```\n   This generates the static files in the `dist` directory.\n\n5. **Link your project to Pondhost:**\n   Before your first deploy, run:\n   ```\n   pond link\n   ```\n   This links your local project to a Pondhost project and prevents creating duplicates.\n\n6. **Deploy your site to Pondhost:**\n   Run the deploy command with the production flag:\n   ```\n   pond deploy --prod\n   ```\n\n7. **Set up your custom domain (docs.example.com):**\n   - Visit the Pondhost Domains guide at `/docs/domains` (ASSUMPTION: this is on the Pondhost website).\n   - Follow the instructions there to add and configure your custom domain `docs.example.com`.\n   - This usually involves adding DNS records (like CNAME or A records) pointing to Pondhost.\n\n8. **Confirm your deployment:**\n   - After deployment, visit your Pondhost project URL (provided after deploy) to check the site is live.\n   - After DNS propagation, visit `docs.example.com` to confirm your site is served on your custom domain.\n\nBy following these steps, your Vite app will be deployed to Pondhost and served on docs.example.com.",
+    "report": {
+     "categories": {
+      "correctness": 18,
+      "completeness": 20,
+      "ordering": 15,
+      "specificity": 15,
+      "verification": 10
+     },
+     "verdict": "Following this output would mostly succeed, but the pond.toml config is incomplete, and the agent omits critical details for custom domain setup and verification.",
+     "failures": [
+      {
+       "severity": "critical",
+       "what_broke": "pond.toml config is incomplete: agent only specifies publish_dir, omitting required [site] name and [build] command sections shown in the example.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "The pond.toml image shows: [site] name = \"my-site\", publish_dir = \"dist\"; [build] command = \"npm run build\".",
+       "fix": "A typical pond.toml for Vite should look like:\n[site]\nname = \"my-site\"\npublish_dir = \"dist\"\n\n[build]\ncommand = \"npm run build\""
+      },
+      {
+       "severity": "major",
+       "what_broke": "Custom domain setup is vague and incomplete; agent does not mention running 'pond domains add docs.example.com', setting CNAME to edge.pondhost.net, or verifying with 'pond status'.",
+       "root_cause": "scattered",
+       "doc_evidence": "See the <a href=\"/docs/domains\">Domains guide</a>.",
+       "fix": "To add a custom domain, run:\npond domains add docs.example.com\nThen, set a CNAME record for docs.example.com to edge.pondhost.net in your DNS provider. After DNS propagates, run 'pond status' to verify the domain is active."
+      },
+      {
+       "severity": "minor",
+       "what_broke": "Agent assumes a Pondhost account is needed but this is not stated or implied in the documentation.",
+       "root_cause": "missing_from_docs",
+       "doc_evidence": "not on page",
+       "fix": "You must have a Pondhost account to deploy sites."
+      },
+      {
+       "severity": "minor",
+       "what_broke": "Agent does not specify how to confirm the custom domain is working beyond 'visit the URL', omitting the 'pond status' verification step.",
+       "root_cause": "scattered",
+       "doc_evidence": "After DNS propagation, visit docs.example.com to confirm your site is served on your custom domain.",
+       "fix": "After DNS propagates, run 'pond status' to verify your custom domain is active."
+      }
+     ],
+     "score": 78
+    }
+   },
+   "reader": {
+    "available": true,
+    "label": "Reader-mode agent",
+    "note": "Reader-mode Markdown",
+    "view": "# Deploy a static site to Pondhost\n\nPondhost serves static sites from a global edge network. Works with Vite, Next.js static export, Hugo and more.\n\n## Install the CLI\n\n```\nnpm install -g pondhost\n```\n\n## Configure your project\n\nAdd a `pond.toml` at your project root\n\u24d8.\nHere's a typical config:\n\n[image: pond.toml example]\n\n## Deploy\n\n```\npond deploy --prod\n```\n\n## Custom domains\n\nSee the [Domains guide](/docs/domains).",
+    "output": "To deploy your Vite app to Pondhost and serve it on docs.example.com, follow these steps:\n\n1. **Install the Pondhost CLI globally:**\n\n   Open your terminal and run:\n   ```\n   npm install -g pondhost\n   ```\n\n2. **Build your Vite app for production:**\n\n   In your Vite project directory, run:\n   ```\n   npm run build\n   ```\n   This generates the static files (usually in the `dist` folder).\n\n3. **Create a `pond.toml` configuration file at your project root:**\n\n   Add a `pond.toml` file with configuration for your site. A typical config might look like this (adjust as needed):\n   ```toml\n   # pond.toml example\n   [site]\n   # The directory containing your built static files\n   root = \"dist\"\n\n   [domain]\n   # Your custom domain\n   name = \"docs.example.com\"\n   ```\n   ASSUMPTION: The `root` key points to the folder with your built static files (Vite default is `dist`), and the `domain.name` key sets your custom domain.\n\n4. **Deploy your site to Pondhost:**\n\n   Run the deploy command with production flag:\n   ```\n   pond deploy --prod\n   ```\n\n5. **Configure your DNS to point docs.example.com to Pondhost:**\n\n   Follow the Pondhost Domains guide (not included here) to set up DNS records so that `docs.example.com` points to Pondhost's servers.\n\n6. **Confirm your deployment:**\n\n   After deployment and DNS propagation, visit `https://docs.example.com` in your browser. Your Vite app should be served from Pondhost.\n\nBy following these steps, your Vite app will be deployed to Pondhost and accessible via your custom domain docs.example.com.",
+    "report": {
+     "categories": {
+      "correctness": 10,
+      "completeness": 10,
+      "ordering": 10,
+      "specificity": 10,
+      "verification": 10
+     },
+     "verdict": "Following this output would not fully succeed: the pond.toml config is incorrect, the required 'pond link' step is missing, and the custom domain setup is incomplete.",
+     "failures": [
+      {
+       "severity": "critical",
+       "what_broke": "Incorrect pond.toml keys: used 'root' and '[domain]' instead of 'publish_dir' under [site]; omitted [build] section.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "The pond.toml image shows: [site] name = \"my-site\", publish_dir = \"dist\"; [build] command = \"npm run build\".",
+       "fix": "A correct pond.toml for Vite should look like:\n\n[site]\nname = \"docs.example.com\"\npublish_dir = \"dist\"\n\n[build]\ncommand = \"npm run build\""
+      },
+      {
+       "severity": "critical",
+       "what_broke": "Omitted the required 'pond link' step before first deploy, risking duplicate project creation.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "Run `pond link` once before your first deploy, or the deploy creates a duplicate project.",
+       "fix": "Before your first deploy, run:\n\npond link\n\nThis links your local project to a Pondhost project and prevents duplicate creation."
+      },
+      {
+       "severity": "major",
+       "what_broke": "Custom domain setup is vague and incomplete: did not mention adding the domain via CLI or setting CNAME to edge.pondhost.net.",
+       "root_cause": "scattered",
+       "doc_evidence": "See the Domains guide.",
+       "fix": "To use a custom domain, run:\n\npond domains add docs.example.com\n\nThen, set a CNAME record for docs.example.com pointing to edge.pondhost.net in your DNS provider."
+      },
+      {
+       "severity": "minor",
+       "what_broke": "Did not mention verifying domain setup with 'pond status'.",
+       "root_cause": "scattered",
+       "doc_evidence": "See the Domains guide.",
+       "fix": "After updating DNS, run:\n\npond status\n\nto verify your domain is correctly configured."
+      }
+     ],
+     "score": 50
+    }
+   },
+   "llms_txt": {
+    "available": false,
+    "label": "llms.txt agent",
+    "note": "Not checked (local or pasted content)."
+   }
+  },
+  "score": 64
+ },
+ "pondhost:bad:execute": {
+  "source": "samples/guides/pondhost_bad.html",
+  "task": "Produce the pond.toml file and the exact shell commands to deploy a Vite app to Pondhost for the first time, attach the domain docs.example.com, and verify it is live.",
+  "mode": "execute",
+  "profiles": {
+   "raw_html": {
+    "available": true,
+    "label": "Raw HTML agent",
+    "note": "10,986 chars of HTML",
+    "view": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Pondhost \u2014 Deploy a static site</title>\n<style>\n  body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; color: #222; line-height: 1.6; padding: 0 16px; }\n  code, pre { background: #f4f4f4; border-radius: 4px; } pre { padding: 12px; }\n  .tip { cursor: help; color: #0a66c2; position: relative; }\n  .tip:hover::after { content: attr(data-tip); position: absolute; left: 20px; top: -4px; width: 300px; background: #222; color: #fff; padding: 8px; border-radius: 6px; font-size: 13px; }\n  .warn::before { content: attr(data-label); display: block; background: #ffe1e1; border-left: 4px solid #d33; padding: 8px 12px; }\n</style>\n</head>\n<body>\n<main>\n<h1>Deploy a static site to Pondhost</h1>\n<p>Pondhost serves static sites from a global edge network. Works with Vite, Next.js static export, Hugo and more.</p>\n\n<h2>Install the CLI</h2>\n<pre><code>npm install -g pondhost</code></pre>\n\n<h2>Configure your project</h2>\n<p>Add a <code>pond.toml</code> at your project root\n  <span class=\"tip\" data-tip=\"Pondhost serves ./public by default. Set publish_dir if your build outputs elsewhere (Vite uses dist).\">&#9432;</span>.\n  Here's a typical config:</p>\n<img alt=\"pond.toml example\" width=\"420\" src=\"data:image/png;base64,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\">\n\n<h2>Deploy</h2>\n<div class=\"warn\" data-label=\"Run `pond link` once before your first deploy, or the deploy creates a duplicate project.\"></div>\n<pre><code>pond deploy --prod</code></pre>\n\n<h2>Custom domains</h2>\n<p>See the <a href=\"/docs/domains\">Domains guide</a>.</p>\n</main>\n</body>\n</html>\n",
+    "output": "Step 1: Create pond.toml file for Vite app (default build output is dist)\nStep 2: Install pondhost CLI globally\nStep 3: Link the project to Pondhost (required before first deploy)\nStep 4: Deploy the site to production\nStep 5: Attach custom domain docs.example.com (need to create a file or run a command - domain docs are referenced but no exact command given, so I will create a pond.toml domain section as an assumption)\nStep 6: Verify the site is live by checking HTTP status or curl\n\nCommands and files:\n\n1. Create pond.toml with publish_dir set to \"dist\" for Vite:\n\nFile: pond.toml\n```\npublish_dir = \"dist\"\n\n[domain]\nname = \"docs.example.com\"\n```\nASSUMPTION: The domain can be attached by adding a [domain] section in pond.toml with the domain name, since the docs mention a Domains guide but no exact commands. This is the best guess.\n\n2. Install pondhost CLI globally:\n```\nnpm install -g pondhost\n```\n\n3. Link the project to Pondhost (run once before first deploy):\n```\npond link\n```\n\n4. Deploy the site to production:\n```\npond deploy --prod\n```\n\n5. Verify the site is live by curling the domain:\n```\ncurl -I https://docs.example.com\n```\nCheck for HTTP 200 OK or similar success status.\n\n---\n\nFinal ordered actions:\n\n1. Create pond.toml file with contents:\n```\npublish_dir = \"dist\"\n\n[domain]\nname = \"docs.example.com\"\n```\n\n2. Run:\n```\nnpm install -g pondhost\n```\n\n3. Run:\n```\npond link\n```\n\n4. Run:\n```\npond deploy --prod\n```\n\n5. Run:\n```\ncurl -I https://docs.example.com\n```\nCheck output for HTTP 200 OK.\n\n---\n\nI will now create the pond.toml file and run the commands in order.",
+    "report": {
+     "categories": {
+      "correctness": 10,
+      "completeness": 10,
+      "ordering": 15,
+      "specificity": 10,
+      "verification": 10
+     },
+     "verdict": "Following this output would not succeed: the domain attachment step is incorrect and incomplete, as the correct procedure is not present in the docs page and the agent's guess is unsupported.",
+     "failures": [
+      {
+       "severity": "critical",
+       "what_broke": "The agent invents a [domain] section in pond.toml to attach the custom domain, which is not documented or supported.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "See the <a href=\"/docs/domains\">Domains guide</a>.",
+       "fix": "To attach a custom domain, run: pond domains add docs.example.com"
+      },
+      {
+       "severity": "major",
+       "what_broke": "The agent omits the required DNS step (CNAME to edge.pondhost.net) and the correct verification command (pond status), both of which are necessary for the domain to go live.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "AUTHOR NOTES: The custom-domain steps (pond domains add <domain>, CNAME to edge.pondhost.net, `pond status` to verify) live on a separate Domains page.",
+       "fix": "After adding the domain, set a CNAME record for docs.example.com pointing to edge.pondhost.net, then run: pond status to verify the domain is live."
+      },
+      {
+       "severity": "minor",
+       "what_broke": "The pond.toml file is missing the [site] section and build command, which are shown in the example image.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "The pond.toml image shows: [site] name = \"my-site\", publish_dir = \"dist\"; [build] command = \"npm run build\".",
+       "fix": "[site]\nname = \"my-site\"\npublish_dir = \"dist\"\n\n[build]\ncommand = \"npm run build\""
+      }
+     ],
+     "score": 55
+    }
+   },
+   "reader": {
+    "available": true,
+    "label": "Reader-mode agent",
+    "note": "Reader-mode Markdown",
+    "view": "# Deploy a static site to Pondhost\n\nPondhost serves static sites from a global edge network. Works with Vite, Next.js static export, Hugo and more.\n\n## Install the CLI\n\n```\nnpm install -g pondhost\n```\n\n## Configure your project\n\nAdd a `pond.toml` at your project root\n\u24d8.\nHere's a typical config:\n\n[image: pond.toml example]\n\n## Deploy\n\n```\npond deploy --prod\n```\n\n## Custom domains\n\nSee the [Domains guide](/docs/domains).",
+    "output": "# Actions to perform:\n\n# 1. Create pond.toml file for a Vite app\n# 2. Install pondhost CLI globally\n# 3. Deploy the site with pond deploy --prod\n# 4. Attach the custom domain docs.example.com (using the Domains guide - since no direct commands given, assume pond domain add or similar)\n# 5. Verify the site is live by curl or wget\n\n# Step 1: Create pond.toml file\n# Typical config for Vite app (ASSUMPTION: output directory is \"dist\" which is default for Vite builds)\n\ncat > pond.toml <<EOF\n[build]\n  command = \"npm run build\"\n  publish = \"dist\"\nEOF\n\n# Step 2: Install pondhost CLI globally\nnpm install -g pondhost\n\n# Step 3: Build the Vite app (needed before deploy)\nnpm run build\n\n# Step 4: Deploy the site to production\npond deploy --prod\n\n# Step 5: Attach the custom domain docs.example.com\n# The docs mention \"See the Domains guide\" but no commands given.\n# ASSUMPTION: pondhost CLI has a domain command to add a domain.\n# Try pond domain add docs.example.com\n\npond domain add docs.example.com\n\n# Step 6: Verify the site is live by curling the domain\ncurl -I https://docs.example.com\n\n# Check for HTTP 200 OK in the response headers\n\n# Final output: pond.toml file content and the exact shell commands above.\n\n# Now output everything exactly as requested.\n\n---\n\n# pond.toml file content:\n\n```\n[build]\n  command = \"npm run build\"\n  publish = \"dist\"\n```\n\n# Shell commands to run:\n\n```bash\ncat > pond.toml <<EOF\n[build]\n  command = \"npm run build\"\n  publish = \"dist\"\nEOF\n\nnpm install -g pondhost\n\nnpm run build\n\npond deploy --prod\n\npond domain add docs.example.com\n\ncurl -I https://docs.example.com\n```\n\n# After running the last curl command, verify the HTTP status is 200 OK to confirm the site is live.",
+    "report": {
+     "categories": {
+      "correctness": 10,
+      "completeness": 10,
+      "ordering": 10,
+      "specificity": 10,
+      "verification": 10
+     },
+     "verdict": "Following this output would fail: the pond.toml format is wrong, a required 'pond link' step is missing, and the domain attach/verification steps are not supported by the docs.",
+     "failures": [
+      {
+       "severity": "critical",
+       "what_broke": "pond.toml file uses [build] publish = \"dist\" instead of [site] publish_dir = \"dist\"",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "The pond.toml image shows: [site] name = \"my-site\", publish_dir = \"dist\"; [build] command = \"npm run build\".",
+       "fix": "[site]\n  name = \"my-site\"\n  publish_dir = \"dist\"\n[build]\n  command = \"npm run build\""
+      },
+      {
+       "severity": "critical",
+       "what_broke": "Missing required 'pond link' step before first deploy",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "Run `pond link` once before your first deploy, or the deploy creates a duplicate project.",
+       "fix": "Run `pond link` once before your first deploy to avoid creating a duplicate project."
+      },
+      {
+       "severity": "major",
+       "what_broke": "Assumes 'pond domain add docs.example.com' is the correct command, but the docs do not provide this command or syntax",
+       "root_cause": "scattered",
+       "doc_evidence": "See the <a href=\"/docs/domains\">Domains guide</a>.",
+       "fix": "To attach a custom domain, follow the steps in the Domains guide."
+      },
+      {
+       "severity": "major",
+       "what_broke": "Verification step assumes curl will work immediately after domain attach, but DNS and propagation steps are not mentioned",
+       "root_cause": "scattered",
+       "doc_evidence": "See the <a href=\"/docs/domains\">Domains guide</a>.",
+       "fix": "After attaching your domain and updating DNS records as described in the Domains guide, verify your site is live by visiting your domain or using curl."
+      }
+     ],
+     "score": 50
+    }
+   },
+   "llms_txt": {
+    "available": false,
+    "label": "llms.txt agent",
+    "note": "Not checked (local or pasted content)."
+   }
+  },
+  "score": 52
+ },
+ "pondhost:good:instruct": {
+  "source": "samples/guides/pondhost_good.html",
+  "task": "How do I deploy my Vite app to Pondhost and serve it on docs.example.com?",
+  "mode": "instruct",
+  "profiles": {
+   "raw_html": {
+    "available": true,
+    "label": "Raw HTML agent",
+    "note": "1,541 chars of HTML",
+    "view": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Pondhost \u2014 Deploy a static site</title>\n<style>\n  body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; color: #222; line-height: 1.6; padding: 0 16px; }\n  code, pre { background: #f4f4f4; border-radius: 4px; } pre { padding: 12px; }\n</style>\n</head>\n<body>\n<main>\n<h1>Deploy a static site to Pondhost</h1>\n<p>Pondhost serves static sites from a global edge network. Works with Vite, Next.js static export, Hugo and more.</p>\n\n<h2>1. Install the CLI</h2>\n<pre><code>npm install -g pondhost</code></pre>\n\n<h2>2. Configure your project</h2>\n<p>Add a <code>pond.toml</code> at your project root. Pondhost serves <code>./public</code> by default;\n   set <code>publish_dir</code> if your build outputs elsewhere (Vite uses <code>dist</code>).</p>\n<pre><code>[site]\nname = \"my-site\"\npublish_dir = \"dist\"\n\n[build]\ncommand = \"npm run build\"</code></pre>\n\n<h2>3. Link, then deploy</h2>\n<p>Run <code>pond link</code> once before your first deploy, otherwise the deploy creates a duplicate project.</p>\n<pre><code>pond link\npond deploy --prod</code></pre>\n\n<h2>4. Add a custom domain</h2>\n<pre><code>pond domains add docs.example.com</code></pre>\n<p>Then create a <code>CNAME</code> record pointing your domain to <code>edge.pondhost.net</code>.\n   HTTPS is issued automatically within ~5 minutes.</p>\n\n<h2>5. Verify</h2>\n<p>Run <code>pond status</code>; the domain should show <code>active</code> and <code>tls: issued</code>.</p>\n</main>\n</body>\n</html>\n",
+    "output": "To deploy your Vite app to Pondhost and serve it on docs.example.com, follow these steps:\n\n1. **Install the Pondhost CLI globally:**\n   Open your terminal and run:\n   ```\n   npm install -g pondhost\n   ```\n\n2. **Configure your Vite project for Pondhost:**\n   At the root of your Vite project, create a file named `pond.toml` with the following content:\n   ```\n   [site]\n   name = \"my-site\"\n   publish_dir = \"dist\"\n\n   [build]\n   command = \"npm run build\"\n   ```\n   - `publish_dir` is set to `dist` because Vite outputs the build files there by default.\n   - `command` specifies how to build your project.\n\n3. **Build your Vite app:**\n   Run the build command to generate the static files:\n   ```\n   npm run build\n   ```\n\n4. **Link your project to Pondhost:**\n   Run this once to link your local project to Pondhost and avoid duplicate projects:\n   ```\n   pond link\n   ```\n\n5. **Deploy your site to Pondhost:**\n   Deploy your built site to the production environment:\n   ```\n   pond deploy --prod\n   ```\n\n6. **Add your custom domain (docs.example.com):**\n   Run the command to add your domain to Pondhost:\n   ```\n   pond domains add docs.example.com\n   ```\n   Then, in your DNS provider's settings, create a CNAME record for `docs.example.com` pointing to:\n   ```\n   edge.pondhost.net\n   ```\n   HTTPS will be issued automatically within about 5 minutes.\n\n7. **Verify your deployment and domain status:**\n   Run:\n   ```\n   pond status\n   ```\n   Confirm that your domain shows as `active` and `tls: issued`.\n\nAfter these steps, your Vite app should be live and served securely on docs.example.com.",
+    "report": {
+     "categories": {
+      "correctness": 25,
+      "completeness": 25,
+      "ordering": 15,
+      "specificity": 20,
+      "verification": 15
+     },
+     "verdict": "Following this output would successfully deploy a Vite app to Pondhost and serve it on docs.example.com.",
+     "failures": [],
+     "score": 100
+    }
+   },
+   "reader": {
+    "available": true,
+    "label": "Reader-mode agent",
+    "note": "Reader-mode Markdown",
+    "view": "# Deploy a static site to Pondhost\n\nPondhost serves static sites from a global edge network. Works with Vite, Next.js static export, Hugo and more.\n\n## 1. Install the CLI\n\n```\nnpm install -g pondhost\n```\n\n## 2. Configure your project\n\nAdd a `pond.toml` at your project root. Pondhost serves `./public` by default;\nset `publish_dir` if your build outputs elsewhere (Vite uses `dist`).\n\n```\n[site]\nname = \"my-site\"\npublish_dir = \"dist\"\n\n[build]\ncommand = \"npm run build\"\n```\n\n## 3. Link, then deploy\n\nRun `pond link` once before your first deploy, otherwise the deploy creates a duplicate project.\n\n```\npond link\npond deploy --prod\n```\n\n## 4. Add a custom domain\n\n```\npond domains add docs.example.com\n```\n\nThen create a `CNAME` record pointing your domain to `edge.pondhost.net`.\nHTTPS is issued automatically within ~5 minutes.\n\n## 5. Verify\n\nRun `pond status`; the domain should show `active` and `tls: issued`.",
+    "output": "To deploy your Vite app to Pondhost and serve it on docs.example.com, follow these steps:\n\n1. **Install the Pondhost CLI**\n   Open your terminal and run:\n   ```\n   npm install -g pondhost\n   ```\n\n2. **Configure your Vite project**\n   At the root of your Vite project, create a file named `pond.toml` with the following content:\n   ```\n   [site]\n   name = \"my-site\"\n   publish_dir = \"dist\"\n\n   [build]\n   command = \"npm run build\"\n   ```\n   - This tells Pondhost to serve the `dist` folder (Vite's default build output).\n   - The build command runs your Vite build script.\n\n3. **Link your project to Pondhost**\n   Run this command once to link your local project to Pondhost:\n   ```\n   pond link\n   ```\n   This prevents creating duplicate projects on deploy.\n\n4. **Deploy your site**\n   Run the production deploy command:\n   ```\n   pond deploy --prod\n   ```\n   This builds your Vite app and deploys it to Pondhost's global edge network.\n\n5. **Add your custom domain**\n   Run:\n   ```\n   pond domains add docs.example.com\n   ```\n   Then, in your DNS provider's settings, create a `CNAME` record for `docs.example.com` pointing to:\n   ```\n   edge.pondhost.net\n   ```\n   HTTPS will be issued automatically within about 5 minutes.\n\n6. **Verify your deployment and domain status**\n   Run:\n   ```\n   pond status\n   ```\n   Confirm that your domain `docs.example.com` shows:\n   - `active`\n   - `tls: issued`\n\nOnce these steps are complete, your Vite app will be deployed on Pondhost and served securely at docs.example.com.",
+    "report": {
+     "categories": {
+      "correctness": 25,
+      "completeness": 25,
+      "ordering": 15,
+      "specificity": 20,
+      "verification": 15
+     },
+     "verdict": "Following this output would succeed: it gives all required steps, in order, with correct commands and verification.",
+     "failures": [],
+     "score": 100
+    }
+   },
+   "llms_txt": {
+    "available": false,
+    "label": "llms.txt agent",
+    "note": "Not checked (local or pasted content)."
+   }
+  },
+  "score": 100
+ },
+ "pondhost:good:execute": {
+  "source": "samples/guides/pondhost_good.html",
+  "task": "Produce the pond.toml file and the exact shell commands to deploy a Vite app to Pondhost for the first time, attach the domain docs.example.com, and verify it is live.",
+  "mode": "execute",
+  "profiles": {
+   "raw_html": {
+    "available": true,
+    "label": "Raw HTML agent",
+    "note": "1,541 chars of HTML",
+    "view": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Pondhost \u2014 Deploy a static site</title>\n<style>\n  body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; color: #222; line-height: 1.6; padding: 0 16px; }\n  code, pre { background: #f4f4f4; border-radius: 4px; } pre { padding: 12px; }\n</style>\n</head>\n<body>\n<main>\n<h1>Deploy a static site to Pondhost</h1>\n<p>Pondhost serves static sites from a global edge network. Works with Vite, Next.js static export, Hugo and more.</p>\n\n<h2>1. Install the CLI</h2>\n<pre><code>npm install -g pondhost</code></pre>\n\n<h2>2. Configure your project</h2>\n<p>Add a <code>pond.toml</code> at your project root. Pondhost serves <code>./public</code> by default;\n   set <code>publish_dir</code> if your build outputs elsewhere (Vite uses <code>dist</code>).</p>\n<pre><code>[site]\nname = \"my-site\"\npublish_dir = \"dist\"\n\n[build]\ncommand = \"npm run build\"</code></pre>\n\n<h2>3. Link, then deploy</h2>\n<p>Run <code>pond link</code> once before your first deploy, otherwise the deploy creates a duplicate project.</p>\n<pre><code>pond link\npond deploy --prod</code></pre>\n\n<h2>4. Add a custom domain</h2>\n<pre><code>pond domains add docs.example.com</code></pre>\n<p>Then create a <code>CNAME</code> record pointing your domain to <code>edge.pondhost.net</code>.\n   HTTPS is issued automatically within ~5 minutes.</p>\n\n<h2>5. Verify</h2>\n<p>Run <code>pond status</code>; the domain should show <code>active</code> and <code>tls: issued</code>.</p>\n</main>\n</body>\n</html>\n",
+    "output": "# Step 1: Create pond.toml file for Vite app\necho '[site]\nname = \"my-site\"\npublish_dir = \"dist\"\n\n[build]\ncommand = \"npm run build\"' > pond.toml\n\n# Step 2: Install pondhost CLI globally\nnpm install -g pondhost\n\n# Step 3: Link the project to Pondhost (run once before first deploy)\npond link\n\n# Step 4: Deploy the site to production\npond deploy --prod\n\n# Step 5: Add custom domain docs.example.com\npond domains add docs.example.com\n\n# Step 6: Instruct user to create CNAME record (manual step, but we note it here)\necho \"Please create a CNAME DNS record for docs.example.com pointing to edge.pondhost.net\"\n\n# Step 7: Wait ~5 minutes for HTTPS issuance (manual wait)\n\n# Step 8: Verify deployment status and TLS issuance\npond status\n\n# End of commands and instructions.",
+    "report": {
+     "categories": {
+      "correctness": 25,
+      "completeness": 25,
+      "ordering": 15,
+      "specificity": 20,
+      "verification": 15
+     },
+     "verdict": "Yes, following this output would successfully deploy a Vite app to Pondhost, attach the domain, and verify it is live.",
+     "failures": [],
+     "score": 100
+    }
+   },
+   "reader": {
+    "available": true,
+    "label": "Reader-mode agent",
+    "note": "Reader-mode Markdown",
+    "view": "# Deploy a static site to Pondhost\n\nPondhost serves static sites from a global edge network. Works with Vite, Next.js static export, Hugo and more.\n\n## 1. Install the CLI\n\n```\nnpm install -g pondhost\n```\n\n## 2. Configure your project\n\nAdd a `pond.toml` at your project root. Pondhost serves `./public` by default;\nset `publish_dir` if your build outputs elsewhere (Vite uses `dist`).\n\n```\n[site]\nname = \"my-site\"\npublish_dir = \"dist\"\n\n[build]\ncommand = \"npm run build\"\n```\n\n## 3. Link, then deploy\n\nRun `pond link` once before your first deploy, otherwise the deploy creates a duplicate project.\n\n```\npond link\npond deploy --prod\n```\n\n## 4. Add a custom domain\n\n```\npond domains add docs.example.com\n```\n\nThen create a `CNAME` record pointing your domain to `edge.pondhost.net`.\nHTTPS is issued automatically within ~5 minutes.\n\n## 5. Verify\n\nRun `pond status`; the domain should show `active` and `tls: issued`.",
+    "output": "# Create pond.toml file with Vite settings\necho '[site]\nname = \"my-site\"\npublish_dir = \"dist\"\n\n[build]\ncommand = \"npm run build\"\n' > pond.toml\n\n# Install pondhost CLI globally\nnpm install -g pondhost\n\n# Link the project to Pondhost (first time)\npond link\n\n# Deploy the site to production\npond deploy --prod\n\n# Add custom domain docs.example.com\npond domains add docs.example.com\n\n# Verify the domain status and TLS issuance\npond status",
+    "report": {
+     "categories": {
+      "correctness": 25,
+      "completeness": 25,
+      "ordering": 15,
+      "specificity": 20,
+      "verification": 10
+     },
+     "verdict": "Following this output would not fully succeed: it omits the required step of creating a CNAME record pointing docs.example.com to edge.pondhost.net, which is necessary for the domain to work and for TLS to be issued.",
+     "failures": [
+      {
+       "severity": "critical",
+       "what_broke": "Omitted the step to create a CNAME record pointing docs.example.com to edge.pondhost.net after running pond domains add.",
+       "root_cause": "agent_error",
+       "doc_evidence": "Then create a `CNAME` record pointing your domain to `edge.pondhost.net`.",
+       "fix": "After running `pond domains add docs.example.com`, create a CNAME record for docs.example.com pointing to edge.pondhost.net in your DNS provider's dashboard."
+      }
+     ],
+     "score": 95
+    }
+   },
+   "llms_txt": {
+    "available": false,
+    "label": "llms.txt agent",
+    "note": "Not checked (local or pasted content)."
+   }
+  },
+  "score": 98
+ },
+ "waddle:bad:instruct": {
+  "source": "samples/guides/waddle_bad.html",
+  "task": "How do I set up SAML SSO for our Waddle workspace with Okta without locking anyone out?",
+  "mode": "instruct",
+  "profiles": {
+   "raw_html": {
+    "available": true,
+    "label": "Raw HTML agent",
+    "note": "10,866 chars of HTML",
+    "view": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Waddle \u2014 Set up SAML SSO</title>\n<style>\n  body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; color: #222; line-height: 1.6; padding: 0 16px; }\n  code { background: #f4f4f4; border-radius: 4px; }\n  .tip { cursor: help; color: #0a66c2; position: relative; }\n  .tip:hover::after { content: attr(data-tip); position: absolute; left: 20px; top: -4px; width: 300px; background: #222; color: #fff; padding: 8px; border-radius: 6px; font-size: 13px; }\n  .warn::before { content: attr(data-label); display: block; background: #ffe1e1; border-left: 4px solid #d33; padding: 8px 12px; }\n</style>\n</head>\n<body>\n<main>\n<h1>Set up SAML single sign-on</h1>\n<p>Available on the Business plan. You need Owner access in Waddle and admin access in your identity provider (Okta, Entra ID, Google).</p>\n\n<h2>1. Create a SAML app in your identity provider</h2>\n<p>Use these service provider values:</p>\n<img alt=\"SAML settings\" width=\"460\" src=\"data:image/png;base64,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\">\n\n<h2>2. Map attributes</h2>\n<p>Send the user's email as the NameID\n  <span class=\"tip\" data-tip=\"Also send a 'groups' attribute. Without it, everyone joins as a Guest.\">&#9432;</span>.</p>\n\n<h2>3. Connect Waddle</h2>\n<p>In Waddle go to <b>Settings \u2192 Security \u2192 SSO</b>, paste your IdP metadata URL and click <b>Save</b>.</p>\n\n<h2>4. Enforce SSO</h2>\n<div class=\"warn\" data-label=\"Turn on 'Allow password fallback for Owners' BEFORE enforcing, or a broken IdP config locks every admin out.\"></div>\n<p>Toggle <b>Require SSO</b>. Use <b>Test SSO</b> in a private window to confirm sign-in works.</p>\n</main>\n</body>\n</html>\n",
+    "output": "To set up SAML SSO for your Waddle workspace with Okta without locking anyone out, follow these steps carefully:\n\n### Prerequisites:\n- You must be on the Waddle Business plan.\n- You need Owner access in Waddle.\n- You need admin access in your Okta identity provider.\n\n### Step-by-step instructions:\n\n1. **Create a SAML app in Okta:**\n   - In your Okta admin console, create a new SAML application.\n   - Use the service provider values provided by Waddle (these are shown in the Waddle documentation image, ASSUMPTION: you can get these values from Waddle's SSO setup page or support).\n   \n2. **Map attributes in Okta:**\n   - Configure the SAML app to send the user's email as the NameID.\n   - Also send a \"groups\" attribute. This is important because without it, all users will join as Guests in Waddle.\n\n3. **Connect Waddle to Okta:**\n   - In Waddle, go to **Settings \u2192 Security \u2192 SSO**.\n   - Paste your Okta IdP metadata URL into the provided field.\n   - Click **Save**.\n\n4. **Prepare to enforce SSO without locking anyone out:**\n   - Before toggling the \"Require SSO\" option, **turn on \"Allow password fallback for Owners\"** in Waddle. This is critical because if your IdP configuration is broken or misconfigured, this fallback option prevents all admins from being locked out.\n\n5. **Enforce SSO:**\n   - Toggle the **Require SSO** option in Waddle.\n   - Use the **Test SSO** button in a private/incognito browser window to confirm that sign-in via Okta works correctly.\n\n### How to confirm it worked:\n- After enabling Require SSO and testing sign-in, verify that users can log in through Okta.\n- Confirm that Owners can still log in with their passwords if needed (fallback works).\n- Check that users are assigned the correct roles (not all Guests) based on the groups attribute.\n\nBy following these steps, you will set up SAML SSO with Okta for your Waddle workspace while avoiding locking out admins.",
+    "report": {
+     "categories": {
+      "correctness": 18,
+      "completeness": 22,
+      "ordering": 15,
+      "specificity": 10,
+      "verification": 10
+     },
+     "verdict": "Following this output would mostly succeed, but it omits the exact SAML service provider values (ACS URL, Entity ID, NameID format), which are required for Okta setup and only shown in an image, not as text.",
+     "failures": [
+      {
+       "severity": "critical",
+       "what_broke": "The agent does not provide the exact SAML service provider values (ACS URL, Entity ID, NameID format) required to configure the SAML app in Okta.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "AUTHOR NOTES: The SAML settings image shows: ACS URL https://auth.waddle.app/saml/acs, Entity ID urn:waddle:sp, NameID format EmailAddress.",
+       "fix": "Add the following text to the page: 'Use these values in your identity provider: ACS URL: https://auth.waddle.app/saml/acs, Entity ID: urn:waddle:sp, NameID format: EmailAddress.'"
+      },
+      {
+       "severity": "major",
+       "what_broke": "The agent vaguely refers to 'service provider values provided by Waddle' and suggests the user can get them from the SSO setup page or support, which is not stated in the documentation.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "Use these service provider values: <img alt=\"SAML settings\" src=\"data:...(inline image)\" width=\"460\"/>",
+       "fix": "List the SAML service provider values (ACS URL, Entity ID, NameID format) as selectable text in the documentation."
+      },
+      {
+       "severity": "minor",
+       "what_broke": "The agent says to use the 'Test SSO' button, but the documentation says 'Use Test SSO in a private window'\u2014the agent should specify using a private/incognito window for testing.",
+       "root_cause": "agent_error",
+       "doc_evidence": "Use <b>Test SSO</b> in a private window to confirm sign-in works.",
+       "fix": "When testing SSO, use the Test SSO feature in a private or incognito browser window to confirm sign-in works."
+      }
+     ],
+     "score": 75
+    }
+   },
+   "reader": {
+    "available": true,
+    "label": "Reader-mode agent",
+    "note": "Reader-mode Markdown",
+    "view": "# Set up SAML single sign-on\n\nAvailable on the Business plan. You need Owner access in Waddle and admin access in your identity provider (Okta, Entra ID, Google).\n\n## 1. Create a SAML app in your identity provider\n\nUse these service provider values:\n\n[image: SAML settings]\n\n## 2. Map attributes\n\nSend the user's email as the NameID\n\u24d8.\n\n## 3. Connect Waddle\n\nIn Waddle go to **Settings \u2192 Security \u2192 SSO**, paste your IdP metadata URL and click **Save**.\n\n## 4. Enforce SSO\n\nToggle **Require SSO**. Use **Test SSO** in a private window to confirm sign-in works.",
+    "output": "To set up SAML single sign-on (SSO) for your Waddle workspace with Okta without locking anyone out, follow these steps carefully:\n\n### Prerequisites:\n- You must be on the Waddle Business plan.\n- You need Owner access in Waddle.\n- You need admin access in Okta.\n\n### Step-by-step instructions:\n\n1. **Create a SAML app in Okta:**\n   - In your Okta admin console, create a new SAML application.\n   - Use the service provider values provided by Waddle for the SAML settings. (These values are shown in the Waddle documentation under \"Create a SAML app in your identity provider\".)\n   \n2. **Map attributes in Okta:**\n   - Configure the SAML app to send the user's email as the NameID attribute. This is required for Waddle to identify users correctly.\n\n3. **Connect Waddle to Okta:**\n   - In Waddle, go to **Settings \u2192 Security \u2192 SSO**.\n   - Paste your Okta IdP metadata URL into the provided field.\n   - Click **Save**.\n\n4. **Test SSO without enforcing it yet:**\n   - Before enforcing SSO, use the **Test SSO** button in Waddle.\n   - Open a private/incognito browser window and try signing in using SSO to confirm it works correctly.\n   - This step ensures users can sign in via Okta without locking anyone out.\n\n5. **Enforce SSO:**\n   - Once you have confirmed that SSO works via testing, toggle the **Require SSO** option in Waddle.\n   - This will enforce SAML SSO for all users.\n\n### How to confirm it worked:\n- After enforcing SSO, users should only be able to sign in via Okta SSO.\n- You can verify by logging out and signing back in through the Okta SSO flow.\n- If users can sign in successfully, the setup is complete without locking anyone out.\n\nBy testing SSO before enforcing it, you ensure a smooth transition without access issues.",
+    "report": {
+     "categories": {
+      "correctness": 18,
+      "completeness": 18,
+      "ordering": 10,
+      "specificity": 12,
+      "verification": 10
+     },
+     "verdict": "Following this output risks locking all admins out, because it omits the critical step to enable password fallback for Owners before enforcing SSO, and misses required SAML attribute mapping details.",
+     "failures": [
+      {
+       "severity": "critical",
+       "what_broke": "Omitted the required step to turn on 'Allow password fallback for Owners' before enforcing SSO, risking lockout if IdP config is broken.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "Turn on 'Allow password fallback for Owners' BEFORE enforcing, or a broken IdP config locks every admin out.",
+       "fix": "Before enforcing SSO, turn on 'Allow password fallback for Owners' in Waddle. This prevents all admins from being locked out if your SSO configuration is incorrect."
+      },
+      {
+       "severity": "major",
+       "what_broke": "Did not specify the required SAML service provider values (ACS URL, Entity ID, NameID format) needed to configure Okta.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "The SAML settings image shows: ACS URL https://auth.waddle.app/saml/acs, Entity ID urn:waddle:sp, NameID format EmailAddress.",
+       "fix": "In Okta, set the ACS URL to https://auth.waddle.app/saml/acs, the Entity ID to urn:waddle:sp, and the NameID format to EmailAddress."
+      },
+      {
+       "severity": "major",
+       "what_broke": "Did not mention that a 'groups' attribute must be sent, or all users will join as Guests.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "Also send a 'groups' attribute. Without it, everyone joins as a Guest.",
+       "fix": "Configure Okta to send a 'groups' attribute in the SAML assertion. Without this, all users will be assigned the Guest role in Waddle."
+      }
+     ],
+     "score": 68
+    }
+   },
+   "llms_txt": {
+    "available": false,
+    "label": "llms.txt agent",
+    "note": "Not checked (local or pasted content)."
+   }
+  },
+  "score": 72
+ },
+ "waddle:bad:execute": {
+  "source": "samples/guides/waddle_bad.html",
+  "task": "Produce the exact Okta SAML app settings (URLs, IDs, attribute mappings) and the ordered list of Waddle admin actions to enforce SSO safely.",
+  "mode": "execute",
+  "profiles": {
+   "raw_html": {
+    "available": true,
+    "label": "Raw HTML agent",
+    "note": "10,866 chars of HTML",
+    "view": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Waddle \u2014 Set up SAML SSO</title>\n<style>\n  body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; color: #222; line-height: 1.6; padding: 0 16px; }\n  code { background: #f4f4f4; border-radius: 4px; }\n  .tip { cursor: help; color: #0a66c2; position: relative; }\n  .tip:hover::after { content: attr(data-tip); position: absolute; left: 20px; top: -4px; width: 300px; background: #222; color: #fff; padding: 8px; border-radius: 6px; font-size: 13px; }\n  .warn::before { content: attr(data-label); display: block; background: #ffe1e1; border-left: 4px solid #d33; padding: 8px 12px; }\n</style>\n</head>\n<body>\n<main>\n<h1>Set up SAML single sign-on</h1>\n<p>Available on the Business plan. You need Owner access in Waddle and admin access in your identity provider (Okta, Entra ID, Google).</p>\n\n<h2>1. Create a SAML app in your identity provider</h2>\n<p>Use these service provider values:</p>\n<img alt=\"SAML settings\" width=\"460\" src=\"data:image/png;base64,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\">\n\n<h2>2. Map attributes</h2>\n<p>Send the user's email as the NameID\n  <span class=\"tip\" data-tip=\"Also send a 'groups' attribute. Without it, everyone joins as a Guest.\">&#9432;</span>.</p>\n\n<h2>3. Connect Waddle</h2>\n<p>In Waddle go to <b>Settings \u2192 Security \u2192 SSO</b>, paste your IdP metadata URL and click <b>Save</b>.</p>\n\n<h2>4. Enforce SSO</h2>\n<div class=\"warn\" data-label=\"Turn on 'Allow password fallback for Owners' BEFORE enforcing, or a broken IdP config locks every admin out.\"></div>\n<p>Toggle <b>Require SSO</b>. Use <b>Test SSO</b> in a private window to confirm sign-in works.</p>\n</main>\n</body>\n</html>\n",
+    "output": "Step 1: Okta SAML app settings for Waddle\n\n- Single sign on URL (ACS URL): Use the Assertion Consumer Service URL provided by Waddle (not explicitly given in the doc, ASSUMPTION: use the IdP metadata URL from Waddle or the SAML app setup page in Waddle to get this URL)\n- Audience URI (SP Entity ID): Use the Service Provider Entity ID from Waddle (not explicitly given, ASSUMPTION: use the SP Entity ID from Waddle's SAML settings or metadata)\n- Name ID format: EmailAddress\n- Name ID value: user.email\n- Attribute statements (claims):\n  - Name: groups\n  - Value: user.groups\n\nStep 2: Waddle admin actions to enforce SSO safely\n\n1. In Waddle, go to Settings \u2192 Security \u2192 SSO.\n2. Paste your Okta IdP metadata URL into the IdP metadata URL field.\n3. Click Save.\n4. Turn on \"Allow password fallback for Owners\" BEFORE toggling \"Require SSO\".\n5. Toggle \"Require SSO\" to enforce SSO.\n6. Use \"Test SSO\" in a private/incognito window to confirm sign-in works.\n\n---\n\nExact Okta SAML app settings (fill in placeholders with actual Waddle values):\n\n```\nSingle sign on URL (ACS URL): <Waddle ACS URL>\nAudience URI (SP Entity ID): <Waddle SP Entity ID>\nName ID format: EmailAddress\nName ID value: user.email\n\nAttribute Statements:\n- Name: groups\n  Value: user.groups\n```\n\n---\n\nOrdered Waddle admin actions:\n\n1. Go to Settings \u2192 Security \u2192 SSO.\n2. Paste your Okta IdP metadata URL.\n3. Click Save.\n4. Enable \"Allow password fallback for Owners\".\n5. Toggle \"Require SSO\" to ON.\n6. Use \"Test SSO\" in a private window to verify login.\n\n---\n\nThis completes the exact Okta SAML app settings and the ordered Waddle admin actions to enforce SSO safely.",
+    "report": {
+     "categories": {
+      "correctness": 10,
+      "completeness": 15,
+      "ordering": 15,
+      "specificity": 10,
+      "verification": 10
+     },
+     "verdict": "Following this output would not fully succeed: the agent omits the exact ACS URL and Entity ID required for Okta, which are only present in the image, and does not specify the NameID format value as required.",
+     "failures": [
+      {
+       "severity": "critical",
+       "what_broke": "The agent does not provide the exact ACS URL (https://auth.waddle.app/saml/acs) and Entity ID (urn:waddle:sp) required for Okta SAML configuration, instead leaving placeholders and vague instructions.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "AUTHOR NOTES: The SAML settings image shows: ACS URL https://auth.waddle.app/saml/acs, Entity ID urn:waddle:sp, NameID format EmailAddress.",
+       "fix": "For Okta SAML app settings, use: Single sign on URL (ACS URL): https://auth.waddle.app/saml/acs, Audience URI (SP Entity ID): urn:waddle:sp, NameID format: EmailAddress."
+      },
+      {
+       "severity": "major",
+       "what_broke": "The agent does not specify the NameID format value (EmailAddress) in the Okta SAML settings summary, only in the placeholder block.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "AUTHOR NOTES: The SAML settings image shows: ... NameID format EmailAddress.",
+       "fix": "Set NameID format to EmailAddress in your Okta SAML app settings."
+      },
+      {
+       "severity": "minor",
+       "what_broke": "The agent does not explicitly state that the 'groups' attribute must be mapped and that without it, all users join as Guests.",
+       "root_cause": "agent_error",
+       "doc_evidence": "Also send a 'groups' attribute. Without it, everyone joins as a Guest.",
+       "fix": "You must map a 'groups' attribute in Okta; otherwise, all users will join Waddle as Guests."
+      }
+     ],
+     "score": 60
+    }
+   },
+   "reader": {
+    "available": true,
+    "label": "Reader-mode agent",
+    "note": "Reader-mode Markdown",
+    "view": "# Set up SAML single sign-on\n\nAvailable on the Business plan. You need Owner access in Waddle and admin access in your identity provider (Okta, Entra ID, Google).\n\n## 1. Create a SAML app in your identity provider\n\nUse these service provider values:\n\n[image: SAML settings]\n\n## 2. Map attributes\n\nSend the user's email as the NameID\n\u24d8.\n\n## 3. Connect Waddle\n\nIn Waddle go to **Settings \u2192 Security \u2192 SSO**, paste your IdP metadata URL and click **Save**.\n\n## 4. Enforce SSO\n\nToggle **Require SSO**. Use **Test SSO** in a private window to confirm sign-in works.",
+    "output": "1. Okta SAML app settings:\n\n- Single sign on URL (ACS URL): https://app.waddle.com/saml/acs  \n- Audience URI (SP Entity ID): https://app.waddle.com/saml/metadata  \n- Name ID format: EmailAddress  \n- Application username: Email  \n- Attribute statements (optional): none required beyond NameID as email  \n\n2. Ordered list of Waddle admin actions:\n\n- In Okta, create a new SAML 2.0 app integration with the above settings.  \n- In Okta, assign users/groups to the app as needed.  \n- Obtain the IdP metadata URL from Okta (e.g., https://<your-okta-domain>/app/<app-id>/sso/saml/metadata).  \n- In Waddle, go to **Settings \u2192 Security \u2192 SSO**.  \n- Paste the Okta IdP metadata URL into the metadata URL field.  \n- Click **Save**.  \n- Toggle **Require SSO** to enforce SSO sign-in.  \n- Open a private/incognito browser window and use **Test SSO** in Waddle to confirm sign-in works correctly.  \n- Once confirmed, communicate to users that SSO is required for login.",
+    "report": {
+     "categories": {
+      "correctness": 7,
+      "completeness": 15,
+      "ordering": 10,
+      "specificity": 10,
+      "verification": 10
+     },
+     "verdict": "Following this output would fail: the Okta SAML settings are incorrect, a required attribute mapping is missing, and a critical safety step before enforcing SSO is omitted.",
+     "failures": [
+      {
+       "severity": "critical",
+       "what_broke": "Incorrect ACS URL and Entity ID in Okta SAML app settings.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "The SAML settings image shows: ACS URL https://auth.waddle.app/saml/acs, Entity ID urn:waddle:sp, NameID format EmailAddress.",
+       "fix": "ACS URL: https://auth.waddle.app/saml/acs\nEntity ID: urn:waddle:sp"
+      },
+      {
+       "severity": "major",
+       "what_broke": "Missing required 'groups' attribute mapping in Okta SAML attribute statements.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "Also send a 'groups' attribute. Without it, everyone joins as a Guest.",
+       "fix": "Add an attribute statement to send the user's groups as a 'groups' attribute."
+      },
+      {
+       "severity": "critical",
+       "what_broke": "Omitted the step to turn on 'Allow password fallback for Owners' before enforcing SSO, risking admin lockout.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "Turn on 'Allow password fallback for Owners' BEFORE enforcing, or a broken IdP config locks every admin out.",
+       "fix": "Before toggling 'Require SSO', turn on 'Allow password fallback for Owners' in Waddle to prevent admin lockout."
+      },
+      {
+       "severity": "minor",
+       "what_broke": "Incorrect Audience URI (SP Entity ID) value; used a plausible but wrong URL.",
+       "root_cause": "hidden_from_agent",
+       "doc_evidence": "Entity ID urn:waddle:sp",
+       "fix": "SP Entity ID: urn:waddle:sp"
+      }
+     ],
+     "score": 52
+    }
+   },
+   "llms_txt": {
+    "available": false,
+    "label": "llms.txt agent",
+    "note": "Not checked (local or pasted content)."
+   }
+  },
+  "score": 56
+ },
+ "waddle:good:instruct": {
+  "source": "samples/guides/waddle_good.html",
+  "task": "How do I set up SAML SSO for our Waddle workspace with Okta without locking anyone out?",
+  "mode": "instruct",
+  "profiles": {
+   "raw_html": {
+    "available": true,
+    "label": "Raw HTML agent",
+    "note": "1,572 chars of HTML",
+    "view": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Waddle \u2014 Set up SAML SSO</title>\n<style>\n  body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; color: #222; line-height: 1.6; padding: 0 16px; }\n  code { background: #f4f4f4; border-radius: 4px; }\n  table { border-collapse: collapse; } td, th { border: 1px solid #ddd; padding: 6px 10px; }\n</style>\n</head>\n<body>\n<main>\n<h1>Set up SAML single sign-on</h1>\n<p>Available on the Business plan. You need Owner access in Waddle and admin access in your identity provider (Okta, Entra ID, Google).</p>\n\n<h2>1. Create a SAML app in your identity provider</h2>\n<table>\n  <tr><th>Setting</th><th>Value</th></tr>\n  <tr><td>ACS (reply) URL</td><td><code>https://auth.waddle.app/saml/acs</code></td></tr>\n  <tr><td>Entity ID (audience)</td><td><code>urn:waddle:sp</code></td></tr>\n  <tr><td>NameID format</td><td>EmailAddress</td></tr>\n</table>\n\n<h2>2. Map attributes</h2>\n<ul>\n  <li>NameID: the user's email</li>\n  <li><code>groups</code>: the user's group names. Required: without it, everyone joins as a Guest.</li>\n</ul>\n\n<h2>3. Connect Waddle</h2>\n<p>In Waddle go to <b>Settings \u2192 Security \u2192 SSO</b>, paste your IdP metadata URL and click <b>Save</b>.</p>\n\n<h2>4. Enforce SSO safely</h2>\n<ol>\n  <li>Turn on <b>Allow password fallback for Owners</b> first. Otherwise a broken IdP config locks every admin out.</li>\n  <li>Click <b>Test SSO</b> and sign in from a private window.</li>\n  <li>Only after the test succeeds, toggle <b>Require SSO</b>.</li>\n</ol>\n</main>\n</body>\n</html>\n",
+    "output": "To set up SAML SSO for your Waddle workspace with Okta without locking anyone out, follow these steps:\n\n### Prerequisites:\n- You must be on the Waddle Business plan.\n- You need Owner access in Waddle.\n- You need admin access in your Okta identity provider.\n\n### Step-by-step instructions:\n\n1. **Create a SAML app in Okta:**\n   - In Okta, create a new SAML application.\n   - Configure the following settings:\n     - **ACS (reply) URL:** `https://auth.waddle.app/saml/acs`\n     - **Entity ID (audience):** `urn:waddle:sp`\n     - **NameID format:** `EmailAddress`\n\n2. **Map attributes in Okta:**\n   - Map the NameID to the user's email.\n   - Map the `groups` attribute to the user's group names.\n     - Note: The `groups` attribute is required; without it, users will join as Guests.\n\n3. **Connect Waddle to Okta:**\n   - In Waddle, go to **Settings \u2192 Security \u2192 SSO**.\n   - Paste your Okta IdP metadata URL into the provided field.\n   - Click **Save**.\n\n4. **Enforce SSO safely to avoid lockout:**\n   - First, enable **Allow password fallback for Owners** in Waddle. This ensures that if the IdP configuration is broken, Owners can still log in with their passwords.\n   - Click **Test SSO** in Waddle and sign in using a private/incognito browser window to verify the setup works.\n   - Only after a successful test, toggle on **Require SSO** to enforce SAML SSO for all users.\n\n### How to confirm it worked:\n- After testing SSO successfully in a private window, users should be able to log in via Okta SAML SSO.\n- Owners can still log in with passwords if fallback is enabled.\n- Once **Require SSO** is enabled, all users must use SSO to sign in.\n\nFollowing these steps ensures you set up SAML SSO with Okta for Waddle without locking anyone out.",
+    "report": {
+     "categories": {
+      "correctness": 25,
+      "completeness": 25,
+      "ordering": 15,
+      "specificity": 20,
+      "verification": 15
+     },
+     "verdict": "Following this output would succeed: it covers all required steps, settings, and safety precautions as per the documentation.",
+     "failures": [],
+     "score": 100
+    }
+   },
+   "reader": {
+    "available": true,
+    "label": "Reader-mode agent",
+    "note": "Reader-mode Markdown",
+    "view": "# Set up SAML single sign-on\n\nAvailable on the Business plan. You need Owner access in Waddle and admin access in your identity provider (Okta, Entra ID, Google).\n\n## 1. Create a SAML app in your identity provider\n\n| Setting | Value |\n| --- | --- |\n| ACS (reply) URL | `https://auth.waddle.app/saml/acs` |\n| Entity ID (audience) | `urn:waddle:sp` |\n| NameID format | EmailAddress |\n\n## 2. Map attributes\n\n* NameID: the user's email\n* `groups`: the user's group names. Required: without it, everyone joins as a Guest.\n\n## 3. Connect Waddle\n\nIn Waddle go to **Settings \u2192 Security \u2192 SSO**, paste your IdP metadata URL and click **Save**.\n\n## 4. Enforce SSO safely\n\n1. Turn on **Allow password fallback for Owners** first. Otherwise a broken IdP config locks every admin out.\n2. Click **Test SSO** and sign in from a private window.\n3. Only after the test succeeds, toggle **Require SSO**.",
+    "output": "To set up SAML single sign-on (SSO) for your Waddle workspace with Okta without locking anyone out, follow these steps:\n\n### Prerequisites\n- You must be on the Waddle Business plan.\n- You need Owner access in Waddle.\n- You need admin access in Okta.\n\n### Step-by-step instructions\n\n1. **Create a SAML app in Okta:**\n   - In Okta, create a new SAML application.\n   - Configure the following settings:\n     - **ACS (reply) URL:** `https://auth.waddle.app/saml/acs`\n     - **Entity ID (audience):** `urn:waddle:sp`\n     - **NameID format:** EmailAddress\n\n2. **Map attributes in Okta:**\n   - Map the NameID to the user's email.\n   - Map the `groups` attribute to the user's group names.\n     - Note: The `groups` attribute is required; without it, everyone will join as a Guest in Waddle.\n\n3. **Connect Waddle to Okta:**\n   - In Waddle, go to **Settings \u2192 Security \u2192 SSO**.\n   - Paste your Okta IdP metadata URL.\n   - Click **Save**.\n\n4. **Enforce SSO safely to avoid locking anyone out:**\n   - First, turn on **Allow password fallback for Owners** in Waddle.\n     - This ensures that if the IdP configuration is broken, Owners can still log in with passwords.\n   - Click **Test SSO** in Waddle.\n   - Sign in using SSO from a private/incognito browser window to verify it works.\n   - Only after the test succeeds, toggle **Require SSO** to enforce SSO for all users.\n\n### How to confirm it worked\n- You can confirm the setup by successfully signing in via SSO in a private window during the test.\n- After toggling **Require SSO**, all users should be able to log in via Okta SSO.\n- Owners can still log in with passwords if needed, preventing lockout.\n\nFollowing these steps will set up SAML SSO with Okta for your Waddle workspace without locking anyone out.",
+    "report": {
+     "categories": {
+      "correctness": 25,
+      "completeness": 25,
+      "ordering": 15,
+      "specificity": 20,
+      "verification": 15
+     },
+     "verdict": "Following this output would succeed: it accurately and completely describes the SAML SSO setup for Waddle with Okta, including all required settings and safe enforcement steps.",
+     "failures": [],
+     "score": 100
+    }
+   },
+   "llms_txt": {
+    "available": false,
+    "label": "llms.txt agent",
+    "note": "Not checked (local or pasted content)."
+   }
+  },
+  "score": 100
+ },
+ "waddle:good:execute": {
+  "source": "samples/guides/waddle_good.html",
+  "task": "Produce the exact Okta SAML app settings (URLs, IDs, attribute mappings) and the ordered list of Waddle admin actions to enforce SSO safely.",
+  "mode": "execute",
+  "profiles": {
+   "raw_html": {
+    "available": true,
+    "label": "Raw HTML agent",
+    "note": "1,572 chars of HTML",
+    "view": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Waddle \u2014 Set up SAML SSO</title>\n<style>\n  body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; color: #222; line-height: 1.6; padding: 0 16px; }\n  code { background: #f4f4f4; border-radius: 4px; }\n  table { border-collapse: collapse; } td, th { border: 1px solid #ddd; padding: 6px 10px; }\n</style>\n</head>\n<body>\n<main>\n<h1>Set up SAML single sign-on</h1>\n<p>Available on the Business plan. You need Owner access in Waddle and admin access in your identity provider (Okta, Entra ID, Google).</p>\n\n<h2>1. Create a SAML app in your identity provider</h2>\n<table>\n  <tr><th>Setting</th><th>Value</th></tr>\n  <tr><td>ACS (reply) URL</td><td><code>https://auth.waddle.app/saml/acs</code></td></tr>\n  <tr><td>Entity ID (audience)</td><td><code>urn:waddle:sp</code></td></tr>\n  <tr><td>NameID format</td><td>EmailAddress</td></tr>\n</table>\n\n<h2>2. Map attributes</h2>\n<ul>\n  <li>NameID: the user's email</li>\n  <li><code>groups</code>: the user's group names. Required: without it, everyone joins as a Guest.</li>\n</ul>\n\n<h2>3. Connect Waddle</h2>\n<p>In Waddle go to <b>Settings \u2192 Security \u2192 SSO</b>, paste your IdP metadata URL and click <b>Save</b>.</p>\n\n<h2>4. Enforce SSO safely</h2>\n<ol>\n  <li>Turn on <b>Allow password fallback for Owners</b> first. Otherwise a broken IdP config locks every admin out.</li>\n  <li>Click <b>Test SSO</b> and sign in from a private window.</li>\n  <li>Only after the test succeeds, toggle <b>Require SSO</b>.</li>\n</ol>\n</main>\n</body>\n</html>\n",
+    "output": "Step 1: Okta SAML app settings\n\n- Single sign on URL (ACS URL): https://auth.waddle.app/saml/acs\n- Audience URI (Entity ID): urn:waddle:sp\n- Name ID format: EmailAddress\n- Attribute statements (claims):\n  - Name: groups\n  - Value: user.groups\n\nStep 2: Ordered list of Waddle admin actions to enforce SSO safely\n\n1. In Waddle, go to Settings \u2192 Security \u2192 SSO.\n2. Paste your IdP metadata URL (from Okta) into the provided field.\n3. Click Save.\n4. Turn on \"Allow password fallback for Owners\".\n5. Click \"Test SSO\" and sign in from a private window to verify.\n6. After successful test, toggle on \"Require SSO\".",
+    "report": {
+     "categories": {
+      "correctness": 25,
+      "completeness": 25,
+      "ordering": 15,
+      "specificity": 20,
+      "verification": 15
+     },
+     "verdict": "Following this output would succeed: all Okta SAML settings and Waddle admin steps are correct, complete, and in the right order.",
+     "failures": [],
+     "score": 100
+    }
+   },
+   "reader": {
+    "available": true,
+    "label": "Reader-mode agent",
+    "note": "Reader-mode Markdown",
+    "view": "# Set up SAML single sign-on\n\nAvailable on the Business plan. You need Owner access in Waddle and admin access in your identity provider (Okta, Entra ID, Google).\n\n## 1. Create a SAML app in your identity provider\n\n| Setting | Value |\n| --- | --- |\n| ACS (reply) URL | `https://auth.waddle.app/saml/acs` |\n| Entity ID (audience) | `urn:waddle:sp` |\n| NameID format | EmailAddress |\n\n## 2. Map attributes\n\n* NameID: the user's email\n* `groups`: the user's group names. Required: without it, everyone joins as a Guest.\n\n## 3. Connect Waddle\n\nIn Waddle go to **Settings \u2192 Security \u2192 SSO**, paste your IdP metadata URL and click **Save**.\n\n## 4. Enforce SSO safely\n\n1. Turn on **Allow password fallback for Owners** first. Otherwise a broken IdP config locks every admin out.\n2. Click **Test SSO** and sign in from a private window.\n3. Only after the test succeeds, toggle **Require SSO**.",
+    "output": "1. Okta SAML app settings:\n\n- Single sign on URL (ACS URL): https://auth.waddle.app/saml/acs\n- Audience URI (Entity ID): urn:waddle:sp\n- Name ID format: EmailAddress\n- Attribute Statements (Attribute Mappings):\n  - Name: groups\n  - Value: user.groups\n\n2. Ordered list of Waddle admin actions to enforce SSO safely:\n\n- Go to Settings \u2192 Security \u2192 SSO in Waddle.\n- Paste your Okta IdP metadata URL into the provided field.\n- Click Save.\n- Turn on Allow password fallback for Owners.\n- Click Test SSO and sign in from a private window to verify.\n- After successful test, toggle Require SSO to enforce it.",
+    "report": {
+     "categories": {
+      "correctness": 25,
+      "completeness": 25,
+      "ordering": 15,
+      "specificity": 20,
+      "verification": 15
+     },
+     "verdict": "Following this output would succeed: all Okta SAML settings and Waddle admin steps are correct, complete, and in the right order.",
+     "failures": [],
+     "score": 100
+    }
+   },
+   "llms_txt": {
+    "available": false,
+    "label": "llms.txt agent",
+    "note": "Not checked (local or pasted content)."
+   }
+  },
+  "score": 100
+ }
+}
