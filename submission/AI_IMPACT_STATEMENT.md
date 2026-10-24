@@ -1,11 +1,11 @@
 # AI Impact Statement: Agentic Ready
 
-**What the AI does.** Agentic Ready automates documentation usability testing. Simulated AI agents read a docs page the way real assistants fetch it (raw HTML, reader-mode Markdown, llms.txt) and attempt a task: answering a how-to question or planning the steps to do it themselves. A Judge model audits each attempt against the full page and explains every failure and its fix.
+**What the AI does:** Simulated AI agents read a docs page the way real assistants fetch it (reader-mode text, llms.txt, raw HTML) and attempt a task: answering a how-to question or planning the steps to do it. A Judge model checks each attempt against the full page as humans see it, scores it, and explains every failure with a suggested fix.
 
-**Models.** OpenAI gpt-4.1-mini runs the Actors: fast, low-cost and representative of everyday assistants. gpt-4.1 runs the Judge, where accuracy matters most.
+**Models:** OpenAI gpt-4.1-mini runs the agents; gpt-4.1 runs the Judge, where accuracy matters. Temperature 0.
 
-**Data provenance.** No training or fine-tuning. Audits use only the page the user submits. Demo guides are fictional, written by us and MIT-licensed.
+**Data:** No training or fine-tuning. We process only the page a user submits, store nothing beyond a session cache, and OpenAI does not train on API inputs by default. Demo guides are fictional and self-written.
 
-**Hallucination and bias mitigations.** Actors are restricted to their fetched view and must label guesses. The Judge must cite page evidence and check whether the fact was visible to that agent before blaming the docs. Category scores are clamped and summed in code. Paired good/bad samples serve as a regression test. Generated commands are never executed.
+**Guardrails:** Agents may use only their fetched text and must flag guesses. The Judge must cite page evidence and check what each agent could see before blaming the docs. Scores are computed in code, and generated commands are never executed. Humans stay in control: the report is advisory, and docs teams review each failure and its evidence before deciding what to fix. Limits: scores vary between runs, and an LLM judge can share the agents' blind spots.
 
-**Expected outcomes.** Users: fewer broken setups when following AI help. Businesses: better AI-driven adoption and fewer support tickets. Safety: fewer agents running invented commands.
+**Outcomes:** Fewer broken AI-guided setups; fewer support tickets; smoother onboarding.
