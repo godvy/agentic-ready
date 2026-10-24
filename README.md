@@ -1,4 +1,4 @@
-# 🦆 Agentic Ready: UserTesting for the Agentic Web
+# Agentic Ready: UserTesting for the Agentic Web
 
 > Is your documentation usable by AI agents? We send agents to find out, then tell you exactly what to fix.
 
