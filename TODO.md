@@ -1,6 +1,6 @@
 # Agentic Ready — TODO
 
-Current Progress: [95%] - Wave 3: MVP committed, deploying
+Current Progress: [100%] - Core MVP locked, committed and deployed
 
 Deadline: **Sat 12:00 PM** (portal locks). Target: all submission items uploaded by 11:00 AM.
 Stack: Python + Streamlit, OpenAI API (gpt-4.1-mini Actors, gpt-4.1 Judge), requests + BeautifulSoup + markdownify. Deploy: Streamlit Community Cloud.
@@ -23,7 +23,7 @@ Stack: Python + Streamlit, OpenAI API (gpt-4.1-mini Actors, gpt-4.1 Judge), requ
 ## Wave 3: Demo + Submission [25%]
 - [x] README (handbook outline), AI Impact Statement, deck text (`submission/`)
 - [x] MVP committed to git
-- [ ] Push to GitHub, deploy to Streamlit Cloud, add live link to README
+- [x] Pushed to GitHub (public), deployed to Streamlit Cloud, live link in README
 - [ ] You: deck slides, demo video, fill in Team section, upload to portal
 
 ## Wave 4+: Bonus

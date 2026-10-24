@@ -2,7 +2,7 @@
 
 > Is your documentation usable by AI agents? We send agents to find out, then tell you exactly what to fix.
 
-**Live demo:** _<Streamlit Cloud link>_ · **Demo video:** _<link>_ · Built at AIBoomi Startup Weekend (Oct 2026)
+**Live demo:** https://agentic-ready-gqulkb5ysrtmnhtve284fz.streamlit.app/ · **Demo video:** _<link>_ · Built at AIBoomi Startup Weekend (Oct 2026)
 
 ## Problem
 
@@ -57,7 +57,7 @@ Three self-written sample guides from different domains, each in a **typical** v
 ## Setup & run
 
 ```bash
-git clone <this repo> && cd agentic-ready
+git clone https://github.com/godvy/agentic-ready && cd agentic-ready
 python -m venv .venv
 .venv/Scripts/activate        # Windows (macOS/Linux: source .venv/bin/activate)
 pip install -r requirements.txt
