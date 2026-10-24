@@ -29,7 +29,7 @@ Agentic Ready replaces manual usability testing with **automated agent usability
    - **Instruct:** answer a user's "how do I…?" with step-by-step instructions
    - **Execute:** carry out a multi-step task itself (exact commands, files and checks)
 4. **Judge:** a stronger model audits each attempt against the full page as a human sees it (tooltips, hidden tabs, JS content, author notes on screenshots).
-5. **Output:** an **AIO (AI Optimization) Score** from 0 to 100 per agent and overall, plus a diagnostic report. Every failure gets a root cause (e.g. *"visible to humans, hidden from this agent"*), the evidence from the page, and the exact sentence to add to fix it.
+5. **Output:** an **AIO (AI Optimization) Score** from 0 to 100. The headline score averages the agents that represent how most assistants read docs (reader mode, plus llms.txt when the site has one). Raw HTML is reported separately as a naive-fetch check; if a page's content starts past its fetch budget, it's flagged as *buried under page chrome* instead of scored. Each agent gets its own score, plus a diagnostic report. Every failure gets a root cause (e.g. *"visible to humans, hidden from this agent"*), the evidence from the page, and the exact sentence to add to fix it.
 
 ```
 docs page ─► Raw HTML view ─► Actor ─► Judge ─┐
@@ -43,9 +43,9 @@ Three self-written sample guides from different domains, each in a **typical** v
 
 | Sample guide | Instruct | Execute |
 |---|---|---|
-| Ducktape CLI: install & configure (dev tooling) | 64 → 100 | 60 → 98 |
-| Pondhost: deploy a static site (DevOps) | 64 → 100 | 52 → 98 |
-| Waddle: set up SAML SSO (SaaS admin) | 72 → 100 | 56 → 100 |
+| Ducktape CLI: install & configure (dev tooling) | 53 → 100 | 52 → 100 |
+| Pondhost: deploy a static site (DevOps) | 50 → 100 | 50 → 95 |
+| Waddle: set up SAML SSO (SaaS admin) | 68 → 100 | 52 → 100 |
 
 ## Tech stack
 
@@ -95,13 +95,13 @@ samples/             sample guides, catalog, offline cache
 - **Ground-truth separation:** Actors only see their profile's view; the Judge sees the full page, so failures can be traced to what was hidden.
 - **Deterministic scoring:** the Judge returns category scores; code clamps each to its maximum and sums them, so scores always add up and stay within 0 to 100.
 - **Root-cause check:** the Judge must confirm whether the correct value literally appears in the agent's view before blaming the agent rather than the docs.
-- **Built-in eval set:** the bad/good sample pairs act as a regression test. Every pair must score clearly lower on the typical version (current gap: 28 to 46 points).
+- **Built-in eval set:** the bad/good sample pairs act as a regression test. Every pair must score clearly lower on the typical version (current gap: 32 to 50 points).
 - **Static only:** generated commands are never executed, so audits can't harm any system.
 - **Fallbacks:** offline mode and automatic cache fallback if the API or network fails.
 
 ## Known limitations & risks
 
-- **Reading profiles are approximations** of common fetch pipelines, not exact replicas of any specific product.
+- **Reading profiles are approximations** of common fetch pipelines, not exact replicas of any specific product. Raw HTML in particular is a minority path (mainly terminal agents using curl), which is why it's excluded from the headline score.
 - **No headless-browser profile yet:** JavaScript-heavy pages are flagged rather than rendered.
 - **LLM-as-judge variance:** individual live scores can move by roughly ±10 between runs; use the sample cache for stable demos.
 - **Screenshots aren't read by the Judge directly:** for the samples, author notes describe image content; for real URLs, image-only content may be under-reported.

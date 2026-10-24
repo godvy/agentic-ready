@@ -16,7 +16,7 @@ def show(result: dict) -> None:
     print(f"\n=== {result['source']} [{result['mode']}] ===  AIO Score: {result['score']}/100")
     for p in result["profiles"].values():
         if not p["available"]:
-            print(f"  {p['label']:<20} n/a  ({p['note']})")
+            print(f"  {p['label']:<20} {'BURIED' if p.get('buried') else 'n/a'}  ({p['note']})")
             continue
         r = p["report"]
         print(f"  {p['label']:<20} {r['score']:>3}  {r.get('verdict', '')}")

@@ -5,6 +5,14 @@ from .actor import run_actor
 from .judge import run_judge
 from .scraper import PROFILES, build_views, fetch_html
 
+# Raw HTML is a naive-fetch check, not how most assistants read docs, so it stays out of the headline score
+HEADLINE_PROFILES = ("reader", "llms_txt")
+
+
+def headline_score(profiles: dict) -> int:
+    scores = [p["report"]["score"] for k, p in profiles.items() if k in HEADLINE_PROFILES and p["available"]]
+    return round(sum(scores) / len(scores)) if scores else 0
+
 
 def _run_profile(key: str, view: dict, html: str, task: str, mode: str, reference: str | None) -> dict:
     output = run_actor(view["text"], task, mode, view["note"])
@@ -26,7 +34,7 @@ def audit(source: str, task: str, mode: str, html: str | None = None, reference:
             if key in futures:
                 profiles[key] = futures[key].result()
             else:
-                profiles[key] = {"available": False, "label": PROFILES[key], "note": view["note"]}
-    scores = [p["report"]["score"] for p in profiles.values() if p["available"]]
+                profiles[key] = {"available": False, "buried": view.get("buried", False),
+                                 "label": PROFILES[key], "note": view["note"]}
     return {"source": source, "task": task, "mode": mode, "html": html, "profiles": profiles,
-            "score": round(sum(scores) / len(scores)) if scores else 0}
+            "score": headline_score(profiles)}

@@ -32,11 +32,11 @@ Paste each slide into your deck tool. Speaker notes are in italics.
 
 **UserTesting for the agentic web.** Paste a URL and a task, get an AIO Score and a fix list.
 
-- Screenshot: two scores side by side: *Typical guide 60 vs Agent-ready 100*
+- Screenshot: two scores side by side: *Typical guide 53 vs Agent-ready 100*
 - Screenshot: failure card: 🔴 *"Agent invented `ducktape connect`; the real command was only in a screenshot"* → ✅ exact sentence to add
 - Three agent reading profiles · Instruct and Execute modes · ✨ auto-suggested test tasks
 
-*Live demo: Demo tab → Ducktape → Execute → Run. Point at the +40 banner, open a failure card, then show "What this agent saw" vs "What humans see" (hover the tooltip).*
+*Live demo: Demo tab → Ducktape → Execute → Run. Point at the +47 banner, open a failure card, then show "What this agent saw" vs "What humans see" (hover the tooltip).*
 
 ---
 

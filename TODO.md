@@ -28,6 +28,7 @@ Stack: Python + Streamlit, OpenAI API (gpt-4.1-mini Actors, gpt-4.1 Judge), requ
 
 ## Wave 4+: Bonus
 - Headless-browser profile (rendered DOM)
+- Retrieval profile (agent sees only the chunks matching its query, like IDE doc indexing)
 - Vision-based Judge for screenshots
 - Sandboxed execution of generated commands
 - Whole-site audits, CI integration

@@ -69,6 +69,13 @@ def raw_view(html: str) -> str:
     return html[:RAW_HTML_BUDGET] + "\n<!-- [truncated by the agent's fetch tool] -->"
 
 
+def content_start(html: str) -> int | None:
+    """Character offset where the page's main content begins (first <main>, <article> or <h1>)."""
+    lower = html.lower()
+    hits = [i for i in (lower.find("<main"), lower.find("<article"), lower.find("<h1")) if i >= 0]
+    return min(hits) if hits else None
+
+
 def fetch_llms_txt(source: str) -> tuple[str | None, str]:
     """Return (text, note) for the site's llms-full.txt / llms.txt, if any."""
     if not source.startswith(("http://", "https://")):
@@ -88,9 +95,15 @@ def fetch_llms_txt(source: str) -> tuple[str | None, str]:
 def build_views(html: str, source: str = "") -> dict:
     """Every reading profile's view of the page. `text` is None when the profile isn't available."""
     llms, llms_note = fetch_llms_txt(source)
+    start = content_start(html)
+    buried = start is not None and start >= RAW_HTML_BUDGET
+    raw_note = f"{len(html):,} chars of HTML" + (" (truncated)" if len(html) > RAW_HTML_BUDGET else "")
+    if buried:
+        raw_note = (f"Only saw page chrome: the main content starts at character {start:,} of {len(html):,}, "
+                    f"past the {RAW_HTML_BUDGET:,}-character fetch budget")
     return {
-        "raw_html": {"text": raw_view(html), "note": f"{len(html):,} chars of HTML"
-                     + (" (truncated)" if len(html) > RAW_HTML_BUDGET else "")},
+        # a buried page gets no Actor run: the agent would have nothing to work from
+        "raw_html": {"text": None if buried else raw_view(html), "note": raw_note, "buried": buried},
         "reader": {"text": html_to_markdown(html), "note": "Reader-mode Markdown"},
         "llms_txt": {"text": llms, "note": llms_note},
     }

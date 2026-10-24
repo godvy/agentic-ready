@@ -92,7 +92,7 @@
     "note": "Not checked (local or pasted content)."
    }
   },
-  "score": 64
+  "score": 53
  },
  "ducktape:bad:execute": {
   "source": "samples/guides/ducktape_bad.html",
@@ -187,7 +187,7 @@
     "note": "Not checked (local or pasted content)."
    }
   },
-  "score": 60
+  "score": 52
  },
  "ducktape:good:instruct": {
   "source": "samples/guides/ducktape_good.html",
@@ -304,7 +304,7 @@
     "note": "Not checked (local or pasted content)."
    }
   },
-  "score": 98
+  "score": 100
  },
  "pondhost:bad:instruct": {
   "source": "samples/guides/pondhost_bad.html",
@@ -413,7 +413,7 @@
     "note": "Not checked (local or pasted content)."
    }
   },
-  "score": 64
+  "score": 50
  },
  "pondhost:bad:execute": {
   "source": "samples/guides/pondhost_bad.html",
@@ -515,7 +515,7 @@
     "note": "Not checked (local or pasted content)."
    }
   },
-  "score": 52
+  "score": 50
  },
  "pondhost:good:instruct": {
   "source": "samples/guides/pondhost_good.html",
@@ -625,7 +625,7 @@
     "note": "Not checked (local or pasted content)."
    }
   },
-  "score": 98
+  "score": 95
  },
  "waddle:bad:instruct": {
   "source": "samples/guides/waddle_bad.html",
@@ -720,7 +720,7 @@
     "note": "Not checked (local or pasted content)."
    }
   },
-  "score": 72
+  "score": 68
  },
  "waddle:bad:execute": {
   "source": "samples/guides/waddle_bad.html",
@@ -822,7 +822,7 @@
     "note": "Not checked (local or pasted content)."
    }
   },
-  "score": 56
+  "score": 52
  },
  "waddle:good:instruct": {
   "source": "samples/guides/waddle_good.html",

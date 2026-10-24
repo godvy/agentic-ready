@@ -12,7 +12,7 @@ import streamlit.components.v1 as components
 from engine.actor import MODE_LABELS
 from engine.judge import CATEGORIES, CATEGORY_LABELS
 from engine.llm import judge_model_name, model_name
-from engine.pipeline import audit
+from engine.pipeline import HEADLINE_PROFILES, audit, headline_score
 from engine.scraper import PROFILE_HELP, PROFILES, fetch_html, html_to_markdown
 from engine.tasks import suggest_tasks
 from make_cache import CACHE_FILE, CATALOG, cache_key
@@ -53,6 +53,7 @@ header[data-testid="stHeader"] { background: #FBFAF8; }
 .ar-band { font-size: .85rem; font-weight: 500; }
 .ar-profiles { display: flex; flex-wrap: wrap; gap: 1.6rem; margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--line); }
 .ar-profiles div { font-size: .82rem; color: var(--muted); }
+.ar-profiles i { font-style: normal; opacity: .7; }
 .ar-profiles b { display: block; font-size: 1.15rem; color: var(--ink); font-weight: 600; margin-top: .15rem; }
 .ar-delta { color: var(--ink); font-size: 1rem; margin: .4rem 0 1.4rem; }
 .ar-delta b { color: var(--good); }
@@ -138,14 +139,21 @@ def band(score: int) -> tuple[str, str]:
     return "Agent-hostile", "var(--bad)"
 
 
+def profile_value(p: dict) -> str:
+    if p["available"]:
+        return str(p["report"]["score"])
+    return "Buried" if p.get("buried") else "—"
+
+
 def render_overview(result: dict, title: str = "AIO Score") -> None:
-    label, color = band(result["score"])
+    score = headline_score(result["profiles"])  # recomputed so older cached results follow the current rule
+    label, color = band(score)
     profiles = "".join(
         f"<div title='{escape(PROFILE_HELP[k])}'>{escape(p['label'])}"
-        f"<b>{p['report']['score'] if p['available'] else '—'}</b></div>"
+        f"{'' if k in HEADLINE_PROFILES else ' <i>(not in score)</i>'}<b>{profile_value(p)}</b></div>"
         for k, p in result["profiles"].items())
     html(f"<div class='ar-card'><div class='ar-label'>{escape(title)}</div>"
-         f"<div class='ar-score'>{result['score']}<span>/ 100</span></div>"
+         f"<div class='ar-score'>{score}<span>/ 100</span></div>"
          f"<div class='ar-band' style='color:{color}'>{label}</div>"
          f"<div class='ar-profiles'>{profiles}</div></div>")
 
@@ -158,7 +166,16 @@ def pick(label: str, options: list, fmt, key: str):
 
 def render_details(result: dict, key: str) -> None:
     available = [k for k, p in result["profiles"].items() if p["available"]]
-    missing = [p for p in result["profiles"].values() if not p["available"]]
+    missing = [p for p in result["profiles"].values() if not p["available"] and not p.get("buried")]
+    for p in result["profiles"].values():
+        if p.get("buried"):
+            html(f"<div class='ar-fail major'><div class='ar-fail-head'><span class='ar-sev major'>major</span>"
+                 f"{escape(p['label'])} never reached the content</div>"
+                 f"<div class='ar-cause'>Buried under page chrome</div>"
+                 f"<div class='ar-evidence'>{escape(p['note'])}.</div>"
+                 f"<div class='ar-fix'><span>Fix</span>Move the article earlier in the HTML, slim down or lazy-load "
+                 f"the navigation, or publish a Markdown / llms.txt version. Agents that fetch the raw page and "
+                 f"truncate it, like terminal coding agents using curl, see only menus here.</div></div>")
     if not available:
         return
     profile = pick("Agent", available, PROFILES.get, f"profile_{key}")
@@ -242,7 +259,7 @@ with demo_tab:
         hidden = sum(f.get("root_cause") == "hidden_from_agent"
                      for p in bad["profiles"].values() if p["available"] for f in p["report"]["failures"])
         st.divider()
-        html(f"<p class='ar-delta'><b>+{good['score'] - bad['score']} points</b> when the same facts are written "
+        html(f"<p class='ar-delta'><b>+{headline_score(good['profiles']) - headline_score(bad['profiles'])} points</b> when the same facts are written "
              f"as plain text. {hidden} failures came from content only humans could see.</p>")
         left, right = st.columns(2, gap="medium")
         with left:
