@@ -36,7 +36,7 @@ Paste each slide into your deck tool. Speaker notes are in italics.
 - Screenshot: failure card: 🔴 *"Agent invented `ducktape connect`; the real command was only in a screenshot"* → ✅ exact sentence to add
 - Three agent reading profiles · Instruct and Execute modes · ✨ auto-suggested test tasks
 
-*Live demo: Demo tab → Ducktape → Execute → Run. Point at the +47 banner, open a failure card, then show "What this agent saw" vs "What humans see" (hover the tooltip).*
+*Live demo: Demo tab → Ducktape → Instruct → Run (with Offline mode on). Point at the +47 banner, open a failure card, then show "What this agent saw" vs "What humans see" (hover the tooltip).*
 
 ---
 
