@@ -235,7 +235,7 @@ with st.sidebar:
     for k, label in PROFILES.items():
         html(f"<p class='ar-note'><b style='color:var(--ink)'>{label}</b><br>{escape(PROFILE_HELP[k])}</p>")
 
-demo_tab, audit_tab = st.tabs(["Demo", "Audit a page"])
+audit_tab, demo_tab = st.tabs(["Audit a page", "Demo"])
 
 with demo_tab:
     c1, c2 = st.columns([3, 2], vertical_alignment="bottom")
@@ -244,6 +244,13 @@ with demo_tab:
     with c2:
         mode = pick("Mode", list(MODE_SHORT), MODE_SHORT.get, "demo_mode")
     html(f"<div class='ar-task'><div class='ar-label'>Task</div>{escape(CATALOG[guide]['tasks'][mode])}</div>")
+    with st.expander("View the sample pages"):
+        html("<p class='ar-note'>Both pages as a human sees them. Hover the info icons and click the tabs to find "
+             "what the agents miss.</p>")
+        for tab, version in zip(st.tabs(["Typical version", "Agent-ready version"]), ("bad", "good")):
+            with tab:
+                components.html(Path(CATALOG[guide][version]).read_text(encoding="utf-8"), height=560,
+                                scrolling=True)
     if st.button("Run agents on both versions", type="primary"):
         try:
             with st.spinner("Agents are reading the docs and working on the task…"):
@@ -294,7 +301,7 @@ with audit_tab:
     st.text_area(MODE_LABELS[a_mode], key=f"task_{a_mode}", height=80,
                  placeholder="How do I set up X on Windows?" if a_mode == "instruct"
                  else "Install X, configure it for Y, and verify it works.")
-    b1, b2, _ = st.columns([1, 1, 4])
+    b1, b2, _ = st.columns([1, 1, 2])
     run = b1.button("Run audit", type="primary", disabled=offline, use_container_width=True)
     b2.button("Suggest tasks", on_click=on_suggest, disabled=offline, use_container_width=True)
     if err := st.session_state.pop("suggest_error", None):
